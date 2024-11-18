@@ -1,0 +1,39 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/favicon.png' %}"/>
+  <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}"/>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    
+    
+    
+    <!-- Sidebar Start -->
+    {% include 'management/includes/sideber.html' %}  
+    {% block content %}{% endblock %}
+    <!--  Sidebar End -->
+
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+
+      <!--  Header Start -->
+      {% include 'management/includes/header.html' %}  
+
+      <!--  Header End -->
+
+
+      
+</body>
+
+</html>
+

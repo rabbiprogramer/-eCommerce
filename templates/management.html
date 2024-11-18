@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="fathers_name">Father's Name:</label>
+        <input type="text" id="fathers_name" name="fathers_name" value="{{ profile.fathers_name }}">
+        <br>
+
+        <label for="mothers_name">Mother's Name:</label>
+        <input type="text" id="mothers_name" name="mothers_name" value="{{ profile.mothers_name }}">
+        <br>
+
+        <label for="profile_image">Profile Image:</label>
+        <input type="file" id="profile_image" name="profile_image">
+        {% if profile.profile_image %}
+            <p>Current image: <img src="{{ profile.profile_image.url }}" alt="Profile Image" width="100"></p>
+        {% endif %}
+        <br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" maxlength="633">{{ profile.address }}</textarea>
+        <br>
+
+        <label for="blood_group">Blood Group:</label>
+        <input type="text" id="blood_group" name="blood_group" value="{{ profile.blood_group }}">
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ profile.email }}">
+        <br>
+        
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="info">
+        <h6 class="">General Information</h6>
+        <div class="row">
+            <div class="col-lg-11 mx-auto">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-12 col-md-4">
+                        <div class="profile-image  mt-4 pe-md-4">
+                            <!-- // The classic file input element we'll enhance
+                            // to a file pond, we moved the configuration
+                            // properties to JavaScript -->
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
+                        <div class="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Fathers_Name">Father's Name</label>
+                                        <input type="text" class="form-control mb-3" id="Fathers_Name" placeholder="Fathers_Name" value="{{ profile.fathers_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="mothers_name">Mother's Name:</label>
+                                        <input type="text" class="form-control mb-3" id="mothers_name" placeholder="mothers_name" value="{{ profile.mothers_name }}">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="blood_group">Blood group</label>
+                                        <select class="form-select mb-3" id="blood_group">
+                                            <option>A+</option>
+                                            <option selected>{{ profile.blood_group }}</option>
+                                            <option>A-</option>
+                                            <option>B+</option>
+                                            <option>O+</option>
+                                            <option>O-</option>
+                                            <option>C+</option>
+                                            <option>c-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control mb-3" id="address" placeholder="address" value="{{ profile.blood_group }}" >
+                                    </div>
+                                </div>
+                                                  
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control mb-3" id="email" placeholder="email"value="{{ profile.email }}">
+                                    </div>
+                                </div>
+
+                                <div class="img-uploader-content"></div>
+                                    <input type="file" class="filepond"
+                                        name="profile_image" accept="image/png, image/jpeg, image/gif"/>
+                                </div>
+
+                                <div class="col-md-12 mt-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="customCheck1">
+                                        <label class="form-check-label" for="customCheck1">Make this my default address</label>
+                                    </div>
+                                </div>
+                                <br>
+                                
+                
+
+                                <div class="col-md-12 mt-1">
+                                    <div class="form-group text-end">
+                                        <button class="btn btn-secondary">Save</button>
+                                    </div>
+                                </div>
+                                <br>
+                    
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

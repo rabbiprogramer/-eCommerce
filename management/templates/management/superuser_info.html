@@ -1,0 +1,13 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% block content %}
+    <h1>Superuser Information</h1>
+    <p>Total Superusers: {{ superuser_count }}</p>
+    <ul>
+        {% for user in superusers %}
+            <li>{{ user.username }} <br> ({{ user.email }})</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'admin:index' %}">Back to Admin</a></p>
+{% endblock %}
+
