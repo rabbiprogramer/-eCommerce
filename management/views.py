@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect 
 from django.http import JsonResponse 
@@ -9,6 +8,10 @@ from django.contrib.auth import authenticate, logout as singout
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomSuperuserForm
 from django.contrib import messages
 from .models import *
 
@@ -17,6 +20,18 @@ from .models import *
 def home(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, 'management/home.html', {'profile': profile})
+
+def add_new(request):
+    if request.method == 'POST':
+        form = CustomSuperuserForm(request.POST)
+        if form.is_valid():
+            form.save()  # Saves the superuser
+            messages.success(request, "Superuser created successfully!")  # Success message
+            return redirect('management:home')  # Redirect to home page after successful form save
+    else:
+        form = CustomSuperuserForm()
+
+    return render(request, 'management/add_new.html', {'form': form})
 
 
 @login_required(login_url="/management/login")
@@ -29,14 +44,14 @@ def home (request):
 
 # @login_required(login_url="/account/login")
 def profile(request):
+    # Query all users (or filter based on your logic)
+    all_profiles = User.objects.all()
 
-    
     context = {
-         "all_profile" : User,
+        "all_profiles": all_profiles,  # Use a queryset, not the model class
+    }
 
-        }
-
-    return render(request,'management/profile.html',context,)    
+    return render(request, 'management/profile.html', context)
 
 #@login_required(login_url="/account/login")
 def login(request):
