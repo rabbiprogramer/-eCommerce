@@ -11,5 +11,7 @@ urlpatterns = [
     path('profile_edit/<int:id>/',profile_edit, name='profile_edit'),
     path('my_taim/',my_taim,name='my_taim'),
     path('superuser_info/', superuser_info, name='superuser_info'),
+    path('add_product/',add_product,name='add_product'),
+    path('all_product/',all_product,name='all_product')
    
 ]

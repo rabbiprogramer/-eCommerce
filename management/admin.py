@@ -7,3 +7,7 @@ from . models import *
 
 
 admin .site.register(Profile)
+admin .site.register(Product)
+admin .site.register(Brand)
+admin .site.register(SubCategory)
+admin .site.register(Category)

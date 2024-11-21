@@ -24,3 +24,34 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.fathers_name or self.user.username} | Team {self.team_id or 'N/A'}"
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    updated = models.DateTimeField(auto_now=True)
+
+    def _str_(self):
+        return self.name
+
+class SubCategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
+    name = models.CharField(max_length=255)
+    updated = models.DateTimeField(auto_now=True)
+
+    def _str_(self):
+        return self.name
+
+class Brand(models.Model):
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='brands')
+    name = models.CharField(max_length=255)
+    updated = models.DateTimeField(auto_now=True)
+
+    def _str_(self):
+        return self.name
+
+class Product(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    updated = models.DateTimeField(auto_now=True)
+
+    def _str_(self):
+        return self.name

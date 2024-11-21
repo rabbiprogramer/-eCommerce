@@ -34,6 +34,12 @@ def add_new(request):
     return render(request, 'management/add_new.html', {'form': form})
 
 
+def add_product(request):
+    return render(request, 'management/add_product.html', )
+
+def all_product(request):
+    return render(request, 'management/all_product.html')
+
 @login_required(login_url="/management/login")
 def management(request):
     return render(request,'management.html')
