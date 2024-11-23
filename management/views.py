@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect 
 from django.http import JsonResponse 
@@ -13,6 +12,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomSuperuserForm
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import ProductForm
 from .models import *
 
 
@@ -35,10 +36,25 @@ def add_new(request):
 
 
 def add_product(request):
-    return render(request, 'management/add_product.html', )
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('all_product') 
+        else:
+            print(form.errors)  
+    else:
+        form = ProductForm()
+        print(request.POST)
+        print(request)
+        
+    return render(request, 'management/add_product.html', {'form': form})
+
 
 def all_product(request):
-    return render(request, 'management/all_product.html')
+    products = Product.objects.all()
+    return render(request, 'management/all_product.html', {'products': products})
+
 
 @login_required(login_url="/management/login")
 def management(request):
@@ -168,3 +184,21 @@ def superuser_info(request):
         'superuser_count': superusers.count(),
     }
     return render(request, 'management/superuser_info.html', context)
+
+
+
+def product_edit(request, id):
+    product = get_object_or_404(Product, id=id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('management:all_product') # Redirect to product list after editing
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'management/product_edit.html', {'form': form})
+
+def product_delete(request, id):
+    product = get_object_or_404(Product, id=id)
+   
+    return redirect('management:all_product')

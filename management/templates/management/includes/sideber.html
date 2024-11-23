@@ -79,7 +79,7 @@
           <ul>
             <li><a href="{% url 'management:add_product' %}"><i class="material-icons-outlined">arrow_right</i>Add Product</a>
             </li>
-            <li><a href="{% url 'management:all_product' %}"><i class="material-icons-outlined">arrow_right</i>Products</a>
+            <li><a href="{% url 'management:all_product' %}"><i class="material-icons-outlined">arrow_right</i>All Products</a>
             </li>
             <li><a href="ecommerce-customers.html"><i class="material-icons-outlined">arrow_right</i>Customers</a>
             </li>
@@ -234,7 +234,7 @@
           </ul>
         </li>
         <li>
-          <a href="user-profile.html">
+          <a href="{% url 'management:profile' %}">
             <div class="parent-icon"><i class="material-icons-outlined">person</i>
             </div>
             <div class="menu-title">User Profile</div>
