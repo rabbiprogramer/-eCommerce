@@ -9,10 +9,16 @@ from .models import Product, ProductImage
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['fathers_name', 'mothers_name', 'team_id', 'profile_image', 'address', 'blood_group', 'email']
+        fields = ['first_name', 'last_name', 'phone', 'email', 'address', 'country', 'city', 'state', 'zip', 'blood_group', 'profile_image', 'language']
+        widgets = {
+            'address': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
+        }
 
-
-
+    # If you need additional validation (e.g., phone number format), you can override the field's clean method
+    def clean_phone(self):
+        phone = self.cleaned_data.get('phone')
+        # You can add custom validation here if needed
+        return phone
 
 
 class CustomSuperuserForm(UserCreationForm):

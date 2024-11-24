@@ -14,6 +14,7 @@ from .forms import CustomSuperuserForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import ProductForm
+from.forms import ProfileForm
 from .models import *
 
 
@@ -66,11 +67,21 @@ def home (request):
 
 # @login_required(login_url="/account/login")
 def profile(request):
-    # Query all users (or filter based on your logic)
-    all_profiles = User.objects.all()
+    # Fetch the profile of the logged-in user
+    profile = Profile.objects.get(user=request.user)
+    
+    # Handle form submission
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()  # Save the updated profile
+            return redirect('management/profile')  # Redirect to the same page after saving the profile
+    else:
+        form = ProfileForm(instance=profile)  # Initialize the form with existing profile data
 
     context = {
-        "all_profiles": all_profiles,  # Use a queryset, not the model class
+        'form': form,
+        'profile': profile,
     }
 
     return render(request, 'management/profile.html', context)

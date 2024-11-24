@@ -4,25 +4,34 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 
+from django.core.validators import RegexValidator  
+
 class Profile(models.Model):
+ 
+    bangladeshi_phone_validator = RegexValidator(
+        regex=r'^(013|014|015|016|017|018|019)\d{8}$',
+        message="Enter a valid Bangladeshi phone number (11 digits starting with 013-019)."
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    fathers_name = models.CharField(max_length=255, blank=True, null=True)
-    mothers_name = models.CharField(max_length=255, blank=True, null=True)
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
     team_id = models.IntegerField(blank=True, null=True)
     profile_image = models.FileField(upload_to='profile_images/', blank=True, null=True)
     address = models.TextField(max_length=633, blank=True, null=True)
-    Phone = models.CharField(max_length=11, blank=True, null=True)
-    blood_group = models.CharField(max_length=10, null=True, blank=True)
-    role = models.CharField(max_length=10, null=True, blank=True)
-    country = models.CharField(max_length=10, null=True, blank=True)
-    last_seen = models.DateTimeField(null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-    Language = models.CharField(max_length=10, null=True, blank=True)
+    phone = models.CharField(max_length=11, blank=True, null=True, validators=[bangladeshi_phone_validator])
+    blood_group = models.CharField(max_length=10, blank=True, null=True)
+    role = models.CharField(max_length=50, blank=True, null=True)
+    country = models.CharField(max_length=50, blank=True, null=True)
+    last_seen = models.DateTimeField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
+    zip = models.CharField(max_length=20, blank=True, null=True)
+    language = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.fathers_name or self.user.username} | Team {self.team_id or 'N/A'}"
-    
+        return f"{self.first_name} {self.last_name}" if self.first_name and self.last_name else self.user.username
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

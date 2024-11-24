@@ -80,69 +80,83 @@
                     </ul>
                   </div>
                  </div>
-								<form class="row g-4">
-									<div class="col-md-6">
-										<label for="input1" class="form-label">First Name</label>
-										<input type="text" class="form-control" id="input1" placeholder="First Name">
-									</div>
-									<div class="col-md-6">
-										<label for="input2" class="form-label">Last Name</label>
-										<input type="text" class="form-control" id="input2" placeholder="Last Name">
-									</div>
-									<div class="col-md-12">
-										<label for="input3" class="form-label">Phone</label>
-										<input type="text" class="form-control" id="input3" placeholder="Phone">
-									</div>
-									<div class="col-md-12">
-										<label for="input4" class="form-label">Email</label>
-										<input type="email" class="form-control" id="input4">
-									</div>
-									<div class="col-md-12">
-										<label for="input5" class="form-label">Password</label>
-										<input type="password" class="form-control" id="input5">
-									</div>
-									<div class="col-md-12">
-										<label for="input6" class="form-label">DOB</label>
-										<input type="date" class="form-control" id="input6">
-									</div>
-									<div class="col-md-12">
-										<label for="input7" class="form-label">Country</label>
-										<select id="input7" class="form-select">
-											<option selected="">Choose...</option>
-											<option>One</option>
-											<option>Two</option>
-											<option>Three</option>
-										</select>
-									</div>
-									
-									<div class="col-md-6">
-										<label for="input8" class="form-label">City</label>
-										<input type="text" class="form-control" id="input8" placeholder="City">
-									</div>
-									<div class="col-md-4">
-										<label for="input9" class="form-label">State</label>
-										<select id="input9" class="form-select">
-											<option selected="">Choose...</option>
-											<option>One</option>
-											<option>Two</option>
-											<option>Three</option>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<label for="input10" class="form-label">Zip</label>
-										<input type="text" class="form-control" id="input10" placeholder="Zip">
-									</div>
-									<div class="col-md-12">
-										<label for="input11" class="form-label">Address</label>
-										<textarea class="form-control" id="input11" placeholder="Address ..." rows="4" cols="4"></textarea>
-									</div>
-									<div class="col-md-12">
-										<div class="d-md-flex d-grid align-items-center gap-3">
-											<button type="button" class="btn btn-grd-primary px-4">Update Profile</button>
-											<button type="button" class="btn btn-light px-4">Reset</button>
-										</div>
-									</div>
-								</form>
+                 <form class="row g-4" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  
+                  <div class="col-md-6">
+                      <label for="id_first_name" class="form-label">First Name</label>
+                      {{ form.first_name }}
+                  </div>
+                  
+                  <div class="col-md-6">
+                      <label for="id_last_name" class="form-label">Last Name</label>
+                      {{ form.last_name }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_phone" class="form-label">Phone</label>
+                      {{ form.phone }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_email" class="form-label">Email</label>
+                      {{ form.email }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_address" class="form-label">Address</label>
+                      {{ form.address }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_role" class="form-label">Role</label> <!-- Changed label to 'id_role' -->
+                      {{ form.role }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_country" class="form-label">Country</label>
+                      {{ form.country }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_city" class="form-label">City</label>
+                      {{ form.city }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_state" class="form-label">State</label>
+                      {{ form.state }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_zip" class="form-label">Zip</label>
+                      {{ form.zip }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_blood_group" class="form-label">Blood Group</label>
+                      {{ form.blood_group }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_profile_image" class="form-label">Profile Image</label>
+                      {{ form.profile_image }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <label for="id_language" class="form-label">Language</label>
+                      {{ form.language }}
+                  </div>
+                  
+                  <div class="col-md-12">
+                      <div class="d-md-flex d-grid align-items-center gap-3">
+                          <button type="submit" class="btn btn-grd-primary px-4">Update Profile</button>
+                          <button type="reset" class="btn btn-light px-4">Reset</button>
+                      </div>
+                  </div>
+              </form>
+              
+              
 							</div>
             </div>
            </div>  
@@ -167,13 +181,13 @@
                  </div>
                  <div class="full-info">
                   <div class="info-list d-flex flex-column gap-3">
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">account_circle</span><p class="mb-0">Full Name:{{profile.name }}</p></div>
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">done</span><p class="mb-0">Status: active</p></div>
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">code</span><p class="mb-0">Role: Developer</p></div>
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">flag</span><p class="mb-0">Country: USA</p></div>
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">language</span><p class="mb-0">Language: English</p></div>
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">send</span><p class="mb-0">Email: jhon.xyz</p></div>
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">call</span><p class="mb-0">Phone: (124) 895-6724</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">account_circle</span><p class="mb-0">Full Name:{{ profile.first_name }}</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">done</span><p class="mb-0">Status: {{ profile.state }}</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">code</span><p class="mb-0">Role: {{ profile.role|default:"Not Assigned" }}></p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">flag</span><p class="mb-0">Country: {{ profile.country }}</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">language</span><p class="mb-0">Language: {{ profile.language|default:"Not Specified" }}</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">send</span><p class="mb-0">Email:{{ profile.email }}</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">call</span><p class="mb-0">Phone: {{ profile.phone|default:"Not Provided" }}</p></div>
                   </div>
                 </div>
               </div>
