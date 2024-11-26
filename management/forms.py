@@ -31,11 +31,10 @@ class CustomSuperuserForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_superuser = True
-        user.is_staff = True
+        user.is_staff = True  # Superuser is typically also a staff member
         if commit:
             user.save()
         return user
-
 
 class ProductForm(forms.ModelForm):
     class Meta:

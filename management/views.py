@@ -18,20 +18,27 @@ from.forms import ProfileForm
 from .models import *
 
 
-
+@login_required(login_url='/management/login')
 def home(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, 'management/home.html', {'profile': profile})
 
 def add_new(request):
+    if not request.user.is_authenticated:
+        return redirect('login') 
+    if not request.user.is_superuser:
+        return redirect('management:home') 
     if request.method == 'POST':
         form = CustomSuperuserForm(request.POST)
         if form.is_valid():
-            form.save()  # Saves the superuser
-            messages.success(request, "Superuser created successfully!")  # Success message
-            return redirect('management:home')  # Redirect to home page after successful form save
+            form.save()
+            messages.success(request, "Superuser created successfully!")
+            return redirect('management:home')
+        else:
+            print(form.errors)  # Log the form errors
+            messages.error(request, "Form submission failed. Please check the fields.") 
     else:
-        form = CustomSuperuserForm()
+        form = CustomSuperuserForm() 
 
     return render(request, 'management/add_new.html', {'form': form})
 
@@ -47,7 +54,7 @@ def add_product(request):
     else:
         form = ProductForm()
         print(request.POST)
-        print(request)
+        print(request.method)
         
     return render(request, 'management/add_product.html', {'form': form})
 
@@ -65,7 +72,7 @@ def management(request):
 def home (request):
     return render(request,'management/home.html')
 
-# @login_required(login_url="/account/login")
+# @login_required(login_url="/management/login")
 def profile(request):
     # Fetch the profile of the logged-in user
     profile = Profile.objects.get(user=request.user)
@@ -75,9 +82,8 @@ def profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()  # Save the updated profile
-            return redirect('management/profile')  # Redirect to the same page after saving the profile
-    else:
-        form = ProfileForm(instance=profile)  # Initialize the form with existing profile data
+            return redirect('management/profile')  
+        form = ProfileForm(instance=profile)  
 
     context = {
         'form': form,
@@ -86,28 +92,24 @@ def profile(request):
 
     return render(request, 'management/profile.html', context)
 
-#@login_required(login_url="/account/login")
+
 def login(request):
     message = None
-    if request.method == 'POST':   
+    if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         if username and password:
             user = authenticate(request, username=username, password=password)
             if user:
-                auth_login(request, user) 
-                return redirect('management:home')
+                auth_login(request, user)
+                return redirect('management:home')  
             else:
                 message = "Invalid credentials"
         else:
             message = "Username and Password are required"
-    
-    context = {
-        "message": message
-    }
 
-    return render(request,'management/login.html', context)
+    return render(request, 'management/login.html', {"message": message})
 
 def signup(request): 
     massage = None 
@@ -149,8 +151,6 @@ def my_taim(request):
 
 @login_required
 
-
-
 def profile_edit(request, id):
     try:
         profile = Profile.objects.get(id=id)
@@ -184,16 +184,24 @@ def profile_edit(request, id):
     return render(request, 'management/profile_edit.html', context)
 
 
+
 def superuser_info(request):
-    if not request.user.is_authenticated:  
-        return redirect('login')
-    if not request.user.is_superuser:  
-        return redirect('home')  
+    if not request.user.is_authenticated:
+        return redirect('management:login')  
+
+    if not request.user.is_superuser:
+        return redirect('management:home')  
+   
     superusers = User.objects.filter(is_superuser=True)
+    
+    if superusers.count() == 0:
+        return redirect('management:login') 
     context = {
         'superusers': superusers,
         'superuser_count': superusers.count(),
     }
+    
+    # Render the superuser_info page
     return render(request, 'management/superuser_info.html', context)
 
 
@@ -210,6 +218,21 @@ def product_edit(request, id):
     return render(request, 'management/product_edit.html', {'form': form})
 
 def product_delete(request, id):
+
     product = get_object_or_404(Product, id=id)
+    
    
+    product.delete()
+    
+
     return redirect('management:all_product')
+
+
+def superuser_delete(request, id):
+ 
+    superuser_info = get_object_or_404(User, id=id, is_superuser=True)
+    messages.success(request, "Superuser deleted successfully.") 
+    
+    superuser_info.delete()
+    
+    return redirect('management:superuser_info')

@@ -38,157 +38,197 @@
           <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
-              <div class="col-12 col-lg-12">
-                  <div class="card">
-                     <div class="card-body">
-                       <div class="mb-4">
-                        <div class="mb-3 row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="{{ form.category.id_for_label }}">Category</label>
-                              {{ form.category }}
-                            </div><br>
-                      
-                            <div class="form-group">
-                              <label for="{{ form.brand.id_for_label }}">Brand</label>
-                              {{ form.brand }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.title.id_for_label }}">Title</label>
-                              {{ form.title }}
-                            </div>
-                            <br>
-                      
-                            <div class="form-group">
-                              <label for="{{ form.description.id_for_label }}">Description</label>
-                              {{ form.description }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.price.id_for_label }}">Price</label>
-                              {{ form.price }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.sale_price.id_for_label }}">Sale Price</label>
-                              {{ form.sale_price }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.regular_price.id_for_label }}">Regular Price</label>
-                              {{ form.regular_price }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.add_stock.id_for_label }}">Add Stock</label>
-                              {{ form.add_stock }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.restock_quantity.id_for_label }}">Restock Quantity</label>
-                              {{ form.restock_quantity }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.shipping_fee.id_for_label }}">Shipping Fee</label>
-                              {{ form.shipping_fee }}
-                            </div>
-                            <br>
-                      
-                            <div class="form-group">
-                              <label for="{{ form.global_delivery.id_for_label }}">Global Delivery</label>
-                              {{ form.global_delivery }}
-                            </div>
-                            <br>
-                      
-                            <div class="form-group">
-                              <label for="{{ form.selected_countries.id_for_label }}">Selected Countries</label>
-                              {{ form.selected_countries }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.tags.id_for_label }}">Tags</label>
-                              {{ form.tags }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.collections.id_for_label }}">Collections</label>
-                              {{ form.collections }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.images.id_for_label }}">Images</label>
-                              {{ form.images }}
-                            </div>
-                            <br>
-                      
-                            <div class="form-group">
-                              <label for="{{ form.attributes.id_for_label }}">Attributes</label>
-                              {{ form.attributes }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.shipping_method.id_for_label }}">Shipping Method</label><br><br><br>                              <div class="form-check"><br>
-                                  {{ form.shipping_method }}
-                              </div>
-                          </div>
-                          <br><br><br>
-                          <div class="form-group"><br><br><br>
-                              <label for="{{ form.is_fragile.id_for_label }}">Is Fragile?</label><br>
-                              <div class="form-check"><br><br><br>
-                                  {{ form.is_fragile }}
-                              </div>
-                          </div>
-                          <br>
-                          <div class="form-group">
-                              <label for="{{ form.is_biodegradable.id_for_label }}">Is Biodegradable?</label><br>
-                              <div class="form-check"><br>
-                                  {{ form.is_biodegradable }}
-                              </div>
-                              <br>
-                          </div>
-                            <div class="form-group"><br>
-                              <label for="{{ form.sku.id_for_label }}">SKU</label><br>
-                              {{ form.sku }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.color.id_for_label }}">Color</label>
-                              {{ form.color }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.size.id_for_label }}">Size</label>
-                              {{ form.size }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.expiry_date.id_for_label }}">Expiry Date</label>
-                              {{ form.expiry_date }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.product_id_type.id_for_label }}">Product ID Type</label>
-                              {{ form.product_id_type }}
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <label for="{{ form.product_id.id_for_label }}">Product ID</label>
-                              {{ form.product_id }}
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary">Add Product</button>
-                          </div>
-                        </div>
-                      </div>
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.title.id_for_label }}">Title</label></h4>
+                        {{ form.title }}
                     </div>
-                  </div>
-                </form>
-              </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.description.id_for_label }}">Description</label></h4>
+                        {{ form.description }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.images.id_for_label }}">Images</label></h4>
+                        {{ form.images }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.category.id_for_label }}">Category</label></h4>
+                        {{ form.category }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.brand.id_for_label }}">Brand</label></h4>
+                        {{ form.brand }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.price.id_for_label }}">Price</label></h4>
+                        {{ form.price }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.sale_price.id_for_label }}">Sale Price</label></h4>
+                        {{ form.sale_price }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.regular_price.id_for_label }}">Regular Price</label></h4>
+                        {{ form.regular_price }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.add_stock.id_for_label }}">Add Stock</label></h4>
+                        {{ form.add_stock }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.restock_quantity.id_for_label }}">Restock Quantity</label></h4>
+                        {{ form.restock_quantity }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.shipping_fee.id_for_label }}">Shipping Fee</label></h4>
+                        {{ form.shipping_fee }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.global_delivery.id_for_label }}">Global Delivery</label></h4>
+                        {{ form.global_delivery }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.selected_countries.id_for_label }}">Selected Countries</label></h4>
+                        {{ form.selected_countries }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.tags.id_for_label }}">Tags</label></h4>
+                        {{ form.tags }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.collections.id_for_label }}">Collections</label></h4>
+                        {{ form.collections }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.attributes.id_for_label }}">Attributes</label></h4>
+                        {{ form.attributes }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.shipping_method.id_for_label }}">Shipping Method</label></h4><br>
+                        <div class="form-check">
+                            {{ form.shipping_method }}
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.is_fragile.id_for_label }}">Is Fragile?</label></h4><br>
+                        <div class="form-check">
+                            {{ form.is_fragile }}
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.is_biodegradable.id_for_label }}">Is Biodegradable?</label></h4><br>
+                        <div class="form-check">
+                            {{ form.is_biodegradable }}
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.sku.id_for_label }}">SKU</label></h4><br>
+                        {{ form.sku }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.color.id_for_label }}">Color</label></h4>
+                        {{ form.color }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.size.id_for_label }}">Size</label></h4>
+                        {{ form.size }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.expiry_date.id_for_label }}">Expiry Date</label></h4>
+                        {{ form.expiry_date }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.product_id_type.id_for_label }}">Product ID Type</label></h4>
+                        {{ form.product_id_type }}
+                    </div>
+                </div>
+        
+                <div class="col-12 col-lg-6 mb-3">
+                    <div class="form-group">
+                        <h4><label for="{{ form.product_id.id_for_label }}">Product ID</label></h4>
+                        {{ form.product_id }}
+                    </div>
+                </div>
+        
+                <div class="col-12 mb-3">
+                    <h3><button type="submit" class="btn btn-primary">Add Product</button></h3>
+                </div>
             </div>
-          </div>
-         </main>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  </main>
   <!--end main wrapper-->
 
 
@@ -356,35 +396,35 @@
         <div class="row g-3">
           <div class="col-12 col-xl-6">
             <input type="radio" class="btn-check" name="theme-options" id="BlueTheme" checked>
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BlueTheme">
+            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BlueTheme">
               <span class="material-icons-outlined">contactless</span>
               <span>Blue</span>
             </label>
           </div>
           <div class="col-12 col-xl-6">
             <input type="radio" class="btn-check" name="theme-options" id="LightTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="LightTheme">
+            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="LightTheme">
               <span class="material-icons-outlined">light_mode</span>
               <span>Light</span>
             </label>
           </div>
           <div class="col-12 col-xl-6">
             <input type="radio" class="btn-check" name="theme-options" id="DarkTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="DarkTheme">
+            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="DarkTheme">
               <span class="material-icons-outlined">dark_mode</span>
               <span>Dark</span>
             </label>
           </div>
           <div class="col-12 col-xl-6">
             <input type="radio" class="btn-check" name="theme-options" id="SemiDarkTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="SemiDarkTheme">
+            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="SemiDarkTheme">
               <span class="material-icons-outlined">contrast</span>
               <span>Semi Dark</span>
             </label>
           </div>
           <div class="col-12 col-xl-6">
             <input type="radio" class="btn-check" name="theme-options" id="BoderedTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BoderedTheme">
+            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BoderedTheme">
               <span class="material-icons-outlined">border_style</span>
               <span>Bordered</span>
             </label>

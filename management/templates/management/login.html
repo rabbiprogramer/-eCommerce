@@ -47,48 +47,54 @@
                   <p class="mb-0">Enter your credentials to login your account</p>
 
                   <div class="form-body my-5">
-										<form method="POST"> 
-                      {% csrf_token %} 
-                      <div class="col-md-12 mb-3"> 
-                           
-                          <h2>Login...</h2> 
-                          <p>Enter your username and password to login</p> 
-                           
-                      </div> 
-                      <div class="col-md-12"> 
-                          <div class="mb-3"> 
-                              <label class="form-label">username</label> 
-                              <input type="text" name="username" class="form-control"> 
-                          </div> 
-                      </div> 
-                      <div class="col-12"> 
-                          <div class="mb-4"> 
-                              <label class="form-label">Password</label> 
-                              <input type="text" name="password" class="form-control"> 
-                          </div> 
-                      </div> 
-                      <div class="col-12"> 
-                          <div class="mb-3"> 
-                              <div class="form-check form-check-primary form-check-inline"> 
-                                  <input class="form-check-input me-3" type="checkbox" id="form-check-default"> 
-                                  <label class="form-check-label" for="form-check-default"> 
-                                      Remember me
-                                  </label> 
-                              </div> 
-                          </div> 
-                      </div> 
-                       
-                      <div class="col-12"> 
-                          <div class="mb-4"> 
-                              <button type="submit" class="btn btn-secondary w-100">Login</button> 
-                          </div> 
-                      </div> 
-                      <div class="col-12"> 
-                          <div class="text-center"> 
-                              <p class="mb-0">Dont't have an account? <a href="{% url 'management:signup' %}" class="text-warning">Sign Up</a></p> 
-                          </div> 
-                      </div> 
-                  </form> 
+										<!-- management/login.html -->
+                    <form method="POST">
+                      {% csrf_token %}
+                      <div class="col-md-12 mb-3">
+                          <h2>Login</h2>
+                          <p>Enter your username and password to login</p>
+                      </div>
+
+                      <div class="col-md-12">
+                          <div class="mb-3">
+                              <label class="form-label">Username</label>
+                              <input type="text" name="username" class="form-control" required>
+                          </div>
+                      </div>
+
+                      <div class="col-12">
+                          <div class="mb-4">
+                              <label class="form-label">Password</label>
+                              <input type="password" name="password" class="form-control" required>
+                          </div>
+                      </div>
+
+                      <div class="col-12">
+                          <div class="mb-3">
+                              <div class="form-check form-check-primary form-check-inline">
+                                  <input class="form-check-input me-3" type="checkbox" id="form-check-default" name="remember_me">
+                                  <label class="form-check-label" for="form-check-default">Remember me</label>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-12">
+                          <div class="mb-4">
+                              <button type="submit" class="btn btn-secondary w-100">Login</button>
+                          </div>
+                      </div>
+
+                      <div class="col-12">
+                          <div class="text-center">
+                              <p class="mb-0">Don't have an account? <a href="{% url 'management:signup' %}" class="text-warning">Sign Up</a></p>
+                          </div>
+                      </div>
+
+                      {% if message %}
+                          <p class="text-danger">{{ message }}</p>
+                      {% endif %}
+                    </form>
+
 									</div>
 
                   <div class="separator section-padding">

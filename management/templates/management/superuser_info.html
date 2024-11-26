@@ -31,6 +31,11 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
       
         <div class="row">
 					<div class="col-xl-20">
@@ -72,7 +77,9 @@
                               </td>
                               <td>
                                   <button class="btn btn-primary btn-sm">Edit</button>
-                                  <button class="btn btn-danger btn-sm">Delete</button>
+                                  <td>
+                                    <a href="{% url 'management:superuser_delete' user.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
                               </td>
                           </tr>
                           {% endfor %}
