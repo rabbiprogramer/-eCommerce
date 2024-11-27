@@ -4,8 +4,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Product, ProductImage
-
-
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -19,7 +17,6 @@ class ProfileForm(forms.ModelForm):
         phone = self.cleaned_data.get('phone')
         # You can add custom validation here if needed
         return phone
-
 
 class CustomSuperuserForm(UserCreationForm):
     email = forms.EmailField(required=True)

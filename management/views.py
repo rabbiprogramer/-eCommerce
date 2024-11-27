@@ -74,17 +74,23 @@ def home (request):
 
 # @login_required(login_url="/management/login")
 def profile(request):
-    # Fetch the profile of the logged-in user
-    profile = Profile.objects.get(user=request.user)
-    
-    # Handle form submission
+    try:
+        # Try to get the profile of the logged-in user
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        profile = None
+
     if request.method == 'POST':
+        # If the request method is POST, instantiate the form with the posted data and files
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()  # Save the updated profile
-            return redirect('management/profile')  
-        form = ProfileForm(instance=profile)  
+            return redirect('management:profile')  # Redirect to the same profile page after successful save
+    else:
+        # If the request method is GET, just instantiate the form with the profile data (if it exists)
+        form = ProfileForm(instance=profile)
 
+    # Make sure 'form' is always passed to the context
     context = {
         'form': form,
         'profile': profile,
@@ -227,12 +233,17 @@ def product_delete(request, id):
 
     return redirect('management:all_product')
 
-
 def superuser_delete(request, id):
- 
-    superuser_info = get_object_or_404(User, id=id, is_superuser=True)
-    messages.success(request, "Superuser deleted successfully.") 
-    
-    superuser_info.delete()
-    
+    if request.method == 'POST':
+        superuser_info = get_object_or_404(User, id=id, is_superuser=True)
+        superuser_info.delete()
+        messages.success(request, "Superuser deleted successfully.")
+    else:
+        messages.error(request, "Invalid request.")
     return redirect('management:superuser_info')
+
+
+
+
+def card (request):
+    return render(request,'management/card.html')

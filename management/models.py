@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator  
 
 class Profile(models.Model):
- 
     bangladeshi_phone_validator = RegexValidator(
         regex=r'^(013|014|015|016|017|018|019)\d{8}$',
         message="Enter a valid Bangladeshi phone number (11 digits starting with 013-019)."

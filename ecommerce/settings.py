@@ -57,8 +57,8 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [],  # You can add global template directories here
+        'APP_DIRS': True,  # Ensure this is True to load templates from app directories
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

@@ -40,6 +40,7 @@
         <div class="row">
 					<div class="col-xl-20">
 						<h4 class="mb-0 text-uppercase">Basic Table</h4>
+           
 						<hr>
             <a href="{% url 'management:add_new' %}" class="btn btn-primary btn-floating"><i class="bi bi-plus">ADD_NEW</i> <!-- Plus Icon --></a>
             
@@ -78,7 +79,10 @@
                               <td>
                                   <button class="btn btn-primary btn-sm">Edit</button>
                                   <td>
-                                    <a href="{% url 'management:superuser_delete' user.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    <form method="POST" action="{% url 'management:superuser_delete' user.id %}" onsubmit="return confirm('Are you sure you want to delete this superuser?');">
+                                      {% csrf_token %}
+                                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                  </form>
                                 </td>
                               </td>
                           </tr>
@@ -89,8 +93,7 @@
 						</div>
 					</div>
 				</div>
-            </div>
-        </div>
+      </div>
     </div>
   </main>
   <!--end main wrapper-->

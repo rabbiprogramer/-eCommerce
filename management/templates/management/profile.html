@@ -1,3 +1,4 @@
+
 {% extends 'management/base.html' %}
 {% load humanize %}
 {% load static %}
@@ -82,72 +83,80 @@
                  </div>
                  <form class="row g-4" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                  
+              
+                  <!-- First Name and Last Name -->
                   <div class="col-md-6">
                       <label for="id_first_name" class="form-label">First Name</label>
                       {{ form.first_name }}
                   </div>
-                  
+              
                   <div class="col-md-6">
                       <label for="id_last_name" class="form-label">Last Name</label>
                       {{ form.last_name }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <!-- Phone and Email -->
+                  <div class="col-md-6">
                       <label for="id_phone" class="form-label">Phone</label>
                       {{ form.phone }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <div class="col-md-6">
                       <label for="id_email" class="form-label">Email</label>
                       {{ form.email }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <!-- Address and Role -->
+                  <div class="col-md-6">
                       <label for="id_address" class="form-label">Address</label>
                       {{ form.address }}
                   </div>
-                  
-                  <div class="col-md-12">
-                      <label for="id_role" class="form-label">Role</label> <!-- Changed label to 'id_role' -->
+              
+                  <div class="col-md-6">
+                      <label for="id_role" class="form-label">Role</label>
                       {{ form.role }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <!-- Country and City -->
+                  <div class="col-md-6">
                       <label for="id_country" class="form-label">Country</label>
                       {{ form.country }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <div class="col-md-6">
                       <label for="id_city" class="form-label">City</label>
                       {{ form.city }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <!-- State and Zip -->
+                  <div class="col-md-6">
                       <label for="id_state" class="form-label">State</label>
                       {{ form.state }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <div class="col-md-6">
                       <label for="id_zip" class="form-label">Zip</label>
                       {{ form.zip }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <!-- Blood Group and Profile Image -->
+                  <div class="col-md-6">
                       <label for="id_blood_group" class="form-label">Blood Group</label>
                       {{ form.blood_group }}
                   </div>
-                  
-                  <div class="col-md-12">
+              
+                  <div class="col-md-6">
                       <label for="id_profile_image" class="form-label">Profile Image</label>
                       {{ form.profile_image }}
                   </div>
-                  
+              
+                  <!-- Language -->
                   <div class="col-md-12">
                       <label for="id_language" class="form-label">Language</label>
                       {{ form.language }}
                   </div>
-                  
+              
+                  <!-- Submit and Reset Buttons -->
                   <div class="col-md-12">
                       <div class="d-md-flex d-grid align-items-center gap-3">
                           <button type="submit" class="btn btn-grd-primary px-4">Update Profile</button>
@@ -155,6 +164,7 @@
                       </div>
                   </div>
               </form>
+              
               
               
 							</div>
@@ -181,7 +191,7 @@
                  </div>
                  <div class="full-info">
                   <div class="info-list d-flex flex-column gap-3">
-                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">account_circle</span><p class="mb-0">Full Name:{{ profile.first_name }}</p></div>
+                    <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">account_circle</span><p class="mb-0">Full Name:{{ profile.first_name }} {{ profile.last_name }}</p></div>
                     <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">done</span><p class="mb-0">Status: {{ profile.state }}</p></div>
                     <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">code</span><p class="mb-0">Role: {{ profile.role|default:"Not Assigned" }}></p></div>
                     <div class="info-list-item d-flex align-items-center gap-3"><span class="material-icons-outlined">flag</span><p class="mb-0">Country: {{ profile.country }}</p></div>
@@ -510,4 +520,3 @@
 </html>
     
 {% endblock %}
-
