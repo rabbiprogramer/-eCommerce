@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect 
@@ -59,9 +60,31 @@ def add_product(request):
     return render(request, 'management/add_product.html', {'form': form})
 
 
+from django.shortcuts import render
+from .models import Product  # Import your Product model
+
 def all_product(request):
+    # Fetch filters from request
+    category = request.GET.get('category')
+    vendor = request.GET.get('vendor')
+    title = request.GET.get('title')
+    collection = request.GET.get('collection')
+
+    # Query the Product model
     products = Product.objects.all()
+
+    # Apply filters dynamically
+    if category:
+        products = products.filter(category__icontains=category)
+    if vendor:
+        products = products.filter(vendor__icontains=vendor)
+    if title:
+        products = products.filter(title__icontains=title)
+    if collection:
+        products = products.filter(collection__icontains=collection)
+
     return render(request, 'management/all_product.html', {'products': products})
+
 
 
 @login_required(login_url="/management/login")
@@ -72,7 +95,7 @@ def management(request):
 def home (request):
     return render(request,'management/home.html')
 
-# @login_required(login_url="/management/login")
+# @login_required(login_url="/management/login")m
 def profile(request):
     try:
         # Try to get the profile of the logged-in user
@@ -145,8 +168,6 @@ def signup(request):
 def logout(request): 
     singout(request) 
     return redirect('management:login')
-
-
 
 
 

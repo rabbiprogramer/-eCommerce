@@ -4,437 +4,295 @@
 {% load static %}
 {% block content %}
 
-  <!--start main wrapper-->
-  <main class="main-wrapper">
-    <div class="main-content">
-      <!--breadcrumb-->
-				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Components</div>
-					<div class="ps-3">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-								</li>
-								<li class="breadcrumb-item active" aria-current="page">Starter Page</li>
-							</ol>
-						</nav>
-					</div>
-					<div class="ms-auto">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary">Settings</button>
-							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
-							</button>
-							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-								<a class="dropdown-item" href="javascript:;">Another action</a>
-								<a class="dropdown-item" href="javascript:;">Something else here</a>
-								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--end breadcrumb-->
-        <div class="container mt-4">
-          <h2>Add Product</h2>
-          <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.title.id_for_label }}">Title</label></h4>
-                        {{ form.title }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.description.id_for_label }}">Description</label></h4>
-                        {{ form.description }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.images.id_for_label }}">Images</label></h4>
-                        {{ form.images }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.category.id_for_label }}">Category</label></h4>
-                        {{ form.category }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.brand.id_for_label }}">Brand</label></h4>
-                        {{ form.brand }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.price.id_for_label }}">Price</label></h4>
-                        {{ form.price }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.sale_price.id_for_label }}">Sale Price</label></h4>
-                        {{ form.sale_price }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.regular_price.id_for_label }}">Regular Price</label></h4>
-                        {{ form.regular_price }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.add_stock.id_for_label }}">Add Stock</label></h4>
-                        {{ form.add_stock }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.restock_quantity.id_for_label }}">Restock Quantity</label></h4>
-                        {{ form.restock_quantity }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.shipping_fee.id_for_label }}">Shipping Fee</label></h4>
-                        {{ form.shipping_fee }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.global_delivery.id_for_label }}">Global Delivery</label></h4>
-                        {{ form.global_delivery }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.selected_countries.id_for_label }}">Selected Countries</label></h4>
-                        {{ form.selected_countries }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.tags.id_for_label }}">Tags</label></h4>
-                        {{ form.tags }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.collections.id_for_label }}">Collections</label></h4>
-                        {{ form.collections }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.attributes.id_for_label }}">Attributes</label></h4>
-                        {{ form.attributes }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.shipping_method.id_for_label }}">Shipping Method</label></h4><br>
-                        <div class="form-check">
-                            {{ form.shipping_method }}
+<!--start main wrapper-->
+<main class="main-wrapper">
+  <div class="main-content">
+    <!--breadcrumb-->
+      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+          <h3>Add Product</h3>
+      
+          <div class="ms-auto">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary">Settings</button>
+                  <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
+                      <a class="dropdown-item" href="javascript:;">Another action</a>
+                      <a class="dropdown-item" href="javascript:;">Something else here</a>
+                      <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--end breadcrumb-->
+      <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="card">
+               <div class="card-body">
+                  <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-4">                    
+                      <h5 class="mb-3">Product Title</h5>
+                      <input type="text" id="name" name="name" class="form-control" placeholder="write title here....">
+                  </div>
+                  <div class="mb-4">
+                      <h5 class="mb-3">Product Description</h5>
+                      <textarea class="form-control" cols="4" rows="6" id="description" name="description" placeholder="write a description here.."></textarea>
+                  </div>
+                  <div class="mb-4">
+                      <h5 class="mb-3">Display images</h5>
+                      <input  type="file" name="image" id="image"   multiple>
+                  </div>
+                  <div class="mb-4">
+                      <h5 class="mb-3">Inventory</h5>
+                      
+                      <div class="row g-3">
+                      <div class="col-12 col-lg-3">
+                          <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
+                          <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Pricing" type="button"><i class="bi bi-tag-fill me-2"></i>Pricing</button>
+                          <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button"><i class="bi bi-box-seam-fill me-2"></i>Restock</button>
+                          <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button"><i class="bi bi-truck-front-fill me-2"></i>Shipping</button>
+                          <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Global Delivery</button>
+                          <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Attributes</button>
+                          <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Advanced</button>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-9">
+                          <div class="tab-content">
+                          <div class="tab-pane fade" id="Pricing">
+                              <div class="row g-3">
+                              <div class="col-12 col-lg-6">
+                                  <h6 class="mb-2">Regular price</h6>
+                                  <input class="form-control" id="regular_price" name="regular_price" type="text" placeholder="$$$">
+                              </div>
+                              <div class="col-12 col-lg-6">
+                                  <h6 for="sell_price" class="mb-2">Sale price</h6>
+                                  <input class="form-control" id="sell_price" name="sell_price" type="text" placeholder="$$$">
+                              </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="Restock">
+                              <h6 class="mb-3">Add to Stock</h6>
+                              <div class="row g-3">
+                              <div class="col-sm-7">
+                                  <input class="form-control" id="is_available" name="is_available" type="number" placeholder="Quantity">
+                              </div>
+                              <div class="col-sm">
+                                  <button class="btn btn-outline-primary"><i class="bi bi-check2 me-2"></i>Confirm</button>
+                              </div>
+                              </div>
+                              <table class="mt-3">
+                              <thead>
+                                  <tr>
+                                  <th style="width: 200px;"></th>
+                                  <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                  <td class="text-1000 py-1">Product in stock now:</td>
+                                  <td class="text-700 fw-semi-bold py-1">$2,059<button class="btn p-0 ms-2" type="button"><i class="bi bi-arrow-clockwise"></i></button></td>
+                                  </tr>
+                                  <tr>
+                                  <td class="text-1000 py-1">Product in transit:</td>
+                                  <td class="text-700 fw-semi-bold py-1">3000</td>
+                                  </tr>
+                                  <tr>
+                                  <td class="text-1000 py-1">Last time restocked:</td>
+                                  <td class="text-700 fw-semi-bold py-1">25th March, 2020</td>
+                                  </tr>
+                                  <tr>
+                                  <td class="text-1000 py-1">Total stock over lifetime:</td>
+                                  <td class="text-700 fw-semi-bold py-1">50,000</td>
+                                  </tr>
+                              </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane fade show active" id="Shipping">
+                              <div class="d-flex flex-column h-100">
+                              <h6 class="mb-3">Shipping Type</h6>
+                              <div class="flex-1">
+                                  <div class="mb-4">
+                                  <div class="form-check mb-1">
+                                      <input class="form-check-input" type="radio" name="shippingRadio" id="fullfilledBySeller">
+                                      <label class="form-check-label fw-bold" for="fullfilledBySeller">Fullfilled by Seller</label></div>
+                                  <div class="ps-4">
+                                      <p class="mb-0">You’ll be responsible for product delivery. <br>Any damage or delay during shipping may cost you a Damage fee.</p>
+                                  </div>
+                                  </div>
+                                  <div class="mb-4">
+                                  <div class="form-check mb-1">
+                                      <input class="form-check-input" type="radio" name="shippingRadio" id="fullfilledByPhoenix" checked="checked">
+                                      <label class="form-check-label fw-bold d-flex align-items-center" for="fullfilledByPhoenix">Fullfilled by Admin <span class="badge bg-warning text-dark ms-2">Recommended</span></label></div>
+                                  <div class="ps-4">
+                                      <p class="mb-0">Your product, Our responsibility.<br>For a measly fee, we will handle the delivery process for you.</p>
+                                  </div>
+                                  </div>
+                              </div>
+                              <p class="fs--1 fw-semi-bold mb-0">See our <a class="fw-bold" href="#!">Delivery terms and conditions </a>for details.</p>
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="GlobalDelivery">
+                              <div class="d-flex flex-column h-100">
+                              <h6 class="mb-3">Global Delivery</h6>
+                              <div class="flex-1">
+                                  <div class="mb-4">
+                                  <div class="form-check mb-1">
+                                      <input class="form-check-input" type="radio" name="shippingRadio" id="Worldwidedelivery">
+                                      <label class="form-check-label fw-bold" for="Worldwidedelivery">Worldwide delivery</label>
+                                  </div>
+                                  <div class="ps-4">
+                                      <p class="mb-0">Only available with Shipping method: <a href="#!">Fullfilled by Admin</a></p>
+                                  </div>
+                                  </div>
+                                  <div class="mb-4">
+                                  <div class="form-check mb-1">
+                                      <input class="form-check-input" type="radio" name="shippingRadio" id="SelectedCountries" checked="checked">
+                                      <label class="form-check-label fw-bold d-flex align-items-center" for="SelectedCountries">Selected Countries</label>
+                                  </div>
+                                  <div class="ps-4">
+                                      <input class="form-control" type="text" placeholder="Type Country name">
+                                  </div>
+                                  </div>
+                                  <div class="mb-0">
+                                  <div class="form-check mb-1">
+                                      <input class="form-check-input" type="radio" name="shippingRadio" id="Localdelivery">
+                                      <label class="form-check-label fw-bold" for="Localdelivery">Local delivery</label>
+                                  </div>
+                                  <div class="ps-4">
+                                      <p class="mb-0">Only available with Shipping method: <a href="#!">Fullfilled by Admin</a></p>
+                                  </div>
+                                  </div>
+                              </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="Attributes">
+                              <h6 class="mb-3">Attributes</h6>
+                              <div class="form-check">
+                              <input class="form-check-input" id="fragileCheck" type="checkbox">
+                              <label class="form-check-label text-900 fs-0" for="fragileCheck">Fragile Product</label>
+                              </div>
+                              <div class="form-check">
+                              <input class="form-check-input" id="biodegradableCheck" type="checkbox">
+                              <label class="form-check-label text-900 fs-0" for="biodegradableCheck">Biodegradable</label>
+                              </div>
+                              <div class="mb-3">
+                              <div class="form-check"><input class="form-check-input" id="frozenCheck" type="checkbox" checked="checked">
+                                  <label class="form-check-label text-900 fs-0" for="frozenCheck">Frozen Product</label>
+                                  <input class="form-control" type="text" placeholder="Max. allowed Temperature" style="max-width: 350px;">
+                              </div>
+                              </div>
+                              <div class="form-check">
+                              <input class="form-check-input" id="productCheck" type="checkbox" checked="checked">
+                              <label class="form-check-label text-900 fs-0" for="productCheck">Expiry Date of Product</label>
+                              <input class="form-control" id="inventory" type="date">
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="Advanced">
+                              <h6 class="mb-3">Advanced</h6>
+                              <div class="row g-3">
+                              <div class="col-12 col-lg-6">
+                                  <label class="mb-2">Product ID Type</label>
+                                  <select class="form-select">
+                                  <option selected="selected">ISBN</option>
+                                  <option value="1">UPC</option>
+                                  <option value="2">EAN</option>
+                                  <option value="3">JAN</option>
+                                  </select>
+                              </div>
+                              <div class="col-12 col-lg-6">
+                                  <label class="mb-2">Product ID</label>
+                                  <input class="form-control" type="text" placeholder="ISBN Number">
+                              </div>
+                          
+                          </div>
                         </div>
+                      </div>
                     </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.is_fragile.id_for_label }}">Is Fragile?</label></h4><br>
-                        <div class="form-check">
-                            {{ form.is_fragile }}
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.is_biodegradable.id_for_label }}">Is Biodegradable?</label></h4><br>
-                        <div class="form-check">
-                            {{ form.is_biodegradable }}
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.sku.id_for_label }}">SKU</label></h4><br>
-                        {{ form.sku }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.color.id_for_label }}">Color</label></h4>
-                        {{ form.color }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.size.id_for_label }}">Size</label></h4>
-                        {{ form.size }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.expiry_date.id_for_label }}">Expiry Date</label></h4>
-                        {{ form.expiry_date }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.product_id_type.id_for_label }}">Product ID Type</label></h4>
-                        {{ form.product_id_type }}
-                    </div>
-                </div>
-        
-                <div class="col-12 col-lg-6 mb-3">
-                    <div class="form-group">
-                        <h4><label for="{{ form.product_id.id_for_label }}">Product ID</label></h4>
-                        {{ form.product_id }}
-                    </div>
-                </div>
-        
-                <div class="col-12 mb-3">
-                    <h3><button type="submit" class="btn btn-primary">Add Product</button></h3>
-                </div>
+                   </div>
+                 </div> 
+               </div>
             </div>
-        </form>
+        </div> 
+        <div class="col-12 col-lg-4">
+           <div class="card">
+              <div class="card-body">
+                 <div class="d-flex align-items-center gap-3">
+                  <button type="button" class="btn btn-outline-danger flex-fill"><i class="bi bi-x-circle me-2"></i>Discard</button>
+                  <button type="button" class="btn btn-outline-success flex-fill"><i class="bi bi-cloud-download me-2"></i>Save Draft</button>
+                  <button type="button" class="btn btn-outline-primary flex-fill"><i class="bi bi-send me-2"></i>Publish</button>
+                 </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                 <h5 class="mb-3">Organize</h5>
+                    <div class="row g-3">
+                        <div class="col-12">
+                          <label for="brand_id" class="form-label">Brand</label>
+                          <select class="form-select" name="brand_id" id="brand_id">
+                          {% for brand in brands %}
+                            <option value="{{brand.id}}">{{brand.name}}</option>
+                          {% endfor %}
+                       
+                          </select>
+                        </div>
+                        <div class="col-12">
+                          <label for="collection" class="form-label">Collection</label>
+                          <input type="text" class="form-control" name="collection" id="collection" placeholder="collection">
+                        </div>
+                        <div class="col-12">
+                          <label for="tags" class="form-label">Tags</label>
+                          <input type="text" class="form-control" name="tags" id="tags" placeholder="Tags">
+                        </div>
+                        <div class="col-12">
+                          <div class="d-flex align-items-center gap-2">
+                            <a href="javascript:;" class="btn btn-sm btn-light border shadow-sm">Woman <i class="bi bi-x"></i></a>
+                            <a href="javascript:;" class="btn btn-sm btn-light border shadow-sm">Fashion <i class="bi bi-x"></i></a>
+                            <a href="javascript:;" class="btn btn-sm btn-light border shadow-sm">Furniture <i class="bi bi-x"></i></a>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label for="vendor" class="form-label">Vendor</label>
+                          <input type="text" class="form-control" id="vendor" placeholder="vendor">
+                        </div>
+                      </div>
+                   </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="mb-3">Variants</h5>
+                  <div class="row g-3">
+                   
+                    <div class="col-12">
+                      <label for="sku" class="form-label">SKU</label>
+                      <input type="text" class="form-control" id="sku" name="sku" placeholder="SKU">
+                     </div>
+                     <div class="col-12">
+                      <label for="color" class="form-label">Color</label>
+                      <input type="text" class="form-control" id="color" name="color" placeholder="color">
+                     </div>
+                     <div class="col-12">
+                      <label for="size" class="form-label">Size</label>
+                      <input type="text" class="form-control" id="size" name="size" placeholder="size">
+                     </div>
+                      <div class="col-12">
+                        <div class="d-grid">
+                          <button type="submit" class="btn btn-primary">Add Variants</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+               </div>
+
+            </div>                
         
-      </div>
-    </div>
+       </div><!--end row-->
   </div>
-  </main>
-  <!--end main wrapper-->
-
-
-    <!--start overlay-->
-    <div class="overlay btn-toggle"></div>
-    <!--end overlay-->
-
-     <!--start footer-->
-     <footer class="page-footer">
-      <p class="mb-0">Copyright © 2024. All right reserved.</p>
-    </footer>
-    <!--top footer-->
-
-  <!--start cart-->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
-    <div class="offcanvas-header border-bottom h-70">
-      <h5 class="mb-0" id="offcanvasRightLabel">8 New Orders</h5>
-      <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
-        <i class="material-icons-outlined">close</i>
-      </a>
-    </div>
-    <div class="offcanvas-body p-0">
-      <div class="order-list">
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/01.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">White Men Shoes</h5>
-            <p class="mb-0 order-price">$289</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/02.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Red Airpods</h5>
-            <p class="mb-0 order-price">$149</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/03.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Men Polo Tshirt</h5>
-            <p class="mb-0 order-price">$139</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/04.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Blue Jeans Casual</h5>
-            <p class="mb-0 order-price">$485</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/05.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Fancy Shirts</h5>
-            <p class="mb-0 order-price">$758</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/06.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Home Sofa Set </h5>
-            <p class="mb-0 order-price">$546</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/07.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Black iPhone</h5>
-            <p class="mb-0 order-price">$1049</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-
-        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
-          <div class="order-img">
-            <img src="{% static 'assets/images/orders/08.png' %}" class="img-fluid rounded-3" width="75" alt="">
-          </div>
-          <div class="order-info flex-grow-1">
-            <h5 class="mb-1 order-title">Goldan Watch</h5>
-            <p class="mb-0 order-price">$689</p>
-          </div>
-          <div class="d-flex">
-            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
-            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="offcanvas-footer h-70 p-3 border-top">
-      <div class="d-grid">
-        <button type="button" class="btn btn-grd btn-grd-primary" data-bs-dismiss="offcanvas">View Products</button>
-      </div>
-    </div>
-  </div>
-  <!--end cart-->
-
-
-  <!--start switcher-->
-  <button class="btn btn-grd btn-grd-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">
-    <i class="material-icons-outlined">tune</i>Customize
-  </button>
-  
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="staticBackdrop">
-    <div class="offcanvas-header border-bottom h-70">
-      <div class="">
-        <h5 class="mb-0">Theme Customizer</h5>
-        <p class="mb-0">Customize your theme</p>
-      </div>
-      <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
-        <i class="material-icons-outlined">close</i>
-      </a>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        <p>Theme variation</p>
-
-        <div class="row g-3">
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="BlueTheme" checked>
-            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BlueTheme">
-              <span class="material-icons-outlined">contactless</span>
-              <span>Blue</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="LightTheme">
-            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="LightTheme">
-              <span class="material-icons-outlined">light_mode</span>
-              <span>Light</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="DarkTheme">
-            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="DarkTheme">
-              <span class="material-icons-outlined">dark_mode</span>
-              <span>Dark</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="SemiDarkTheme">
-            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="SemiDarkTheme">
-              <span class="material-icons-outlined">contrast</span>
-              <span>Semi Dark</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="BoderedTheme">
-            <h4><label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BoderedTheme">
-              <span class="material-icons-outlined">border_style</span>
-              <span>Bordered</span>
-            </label>
-          </div>
-        </div><!--end row-->
-
-      </div>
-    </div>
-  </div>
-  <!--start switcher-->
+</main>
+<!--end main wrapper-->
 
     
   {% endblock %}

@@ -69,5 +69,3 @@ class ProductForm(forms.ModelForm):
             'product_id_type': forms.Select(attrs={'class': 'form-control'}),
             'product_id': forms.TextInput(attrs={'class': 'form-control'}),
         }
-
-
