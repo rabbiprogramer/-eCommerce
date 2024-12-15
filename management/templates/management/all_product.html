@@ -42,15 +42,25 @@
         <a href="javascript:;"><span class="me-1">On Discount</span><span class="text-secondary">(88754)</span></a>
       </div>
 
-      <div class="row g-3">
+      <div class="row">
         <!-- Search Bar -->
         <div class="col-auto">
           <div class="position-relative">
-            <input class="form-control px-5" type="search" name="title" placeholder="Search Products" id="searchProduct">
-            <span class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
-          </div>
-        </div>
+            <form method="GET" action="">
+              <input 
+                class="form-control px-5" type="search" placeholder="Search Products"
+                type="search" 
+                name="search" 
+                placeholder="Search Products" 
+                id="searchProduct" 
+                value="{{ request.GET.search|default:'' }}">
       
+              <button type="submit" class="position-absolute btn btn-link end-0 top-50 translate-middle-y fs-5 border-0">
+                <span class="material-icons-outlined">search</span>
+              </button>
+            </form>
+          </div>
+      </div>
         <!-- Filters -->
         <div class="col-auto flex-grow-1 overflow-auto">
           <div class="btn-group position-static">
@@ -59,10 +69,8 @@
               Category
             </button>
             <ul class="dropdown-menu">
-              {% for product in products %}
-                {% if product.category %}
-                  <li><a class="dropdown-item" href="?category={{ product.category }}">{{ product.category }}</a></li>
-                {% endif %}
+              {% for category in categories %}
+                <li><a class="dropdown-item" href="?category={{ category }}">{{ category }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -73,10 +81,8 @@
               Vendor
             </button>
             <ul class="dropdown-menu">
-              {% for product in products %}
-                {% if product.vendor %}
-                  <li><a class="dropdown-item" href="?vendor={{ product.vendor }}">{{ product.vendor }}</a></li>
-                {% endif %}
+              {% for vendor in vendors %}
+                <li><a class="dropdown-item" href="?vendor={{ vendor }}">{{ vendor }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -87,10 +93,12 @@
               Collection
             </button>
             <ul class="dropdown-menu">
-              {% for product in products %}
-                {% if product.collection %}
-                  <li><a class="dropdown-item" href="?collection={{ product.collection }}">{{ product.collection }}</a></li>
-                {% endif %}
+              {% for collection in collections %}
+                <li>
+                  <a class="dropdown-item" href="?collection={{ collection }}">
+                    {{ collection }}
+                  </a>
+                </li>
               {% endfor %}
             </ul>
           </div>
@@ -99,7 +107,9 @@
         <!-- Add/Export Buttons -->
         <div class="col-auto">
           <div class="d-flex align-items-center gap-2 justify-content-lg-end">
-            <button class="btn btn-filter px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
+            <button class="btn btn-filter px-4">
+              <i class="bi bi-box-arrow-right me-2"></i>Export
+          </button>
             <a href="{% url 'management:add_product' %}" class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>Add Product</a>
           </div>
         </div>

@@ -9,8 +9,16 @@
   <div class="main-content">
     <!--breadcrumb-->
       <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-          <h3>Add Product</h3>
-      
+        <h3>Add Product</h3>
+        <br>
+        {% if message %}
+            <h3>
+                <span style="color: red;">{{ message }}</span>
+            </h3>
+        {% endif %}
+        
+
+          
           <div class="ms-auto">
               <div class="btn-group">
                   <button type="button" class="btn btn-primary">Settings</button>
@@ -29,6 +37,7 @@
         <div class="col-12 col-lg-8">
             <div class="card">
                <div class="card-body">
+                
                   <form method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <div class="mb-4">                    

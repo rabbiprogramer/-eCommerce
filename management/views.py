@@ -16,6 +16,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import ProductForm
 from.forms import ProfileForm
+from django.db.models import Q
 from .models import *
 
 
@@ -45,45 +46,130 @@ def add_new(request):
 
 
 def add_product(request):
-    if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('all_product') 
+    message = None
+    product = Product.objects.all()
+    if request.method == 'POST':
+        # Collecting data from the form
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        category_id = request.POST.get('category')
+        brand_id = request.POST.get('brand')
+        vendor_id = request.POST.get('vendor')
+        price = request.POST.get('price')
+        sale_price = request.POST.get('sale_price')
+        regular_price = request.POST.get('regular_price')
+        add_stock = request.POST.get('add_stock')
+        restock_quantity = request.POST.get('restock_quantity')
+        shipping_fee = request.POST.get('shipping_fee')
+        global_delivery = request.POST.get('global_delivery') == 'on'  
+        tags = request.POST.get('tags')
+        images = request.FILES.get('images')
+        shipping_method = request.POST.get('shipping_method')
+        is_fragile = request.POST.get('is_fragile') == 'on'
+        is_biodegradable = request.POST.get('is_biodegradable') == 'on'
+        is_frozen = request.POST.get('is_frozen')
+        max_temperature = request.POST.get('max_temperature')
+        expiry_date = request.POST.get('expiry_date')
+        product_id_type = request.POST.get('product_id_type')
+        product_id = request.POST.get('product_id')
+        sku = request.POST.get('sku')
+        color = request.POST.get('color')
+        size = request.POST.get('size')
+
+        if title and description and size and color and sku and product_id_type and product_id and sale_price and price and images and expiry_date and tags and is_frozen:
+
+            product = Product.objects.create(
+                title=title,
+                description=description,
+                category_id=category_id,
+                brand_id=brand_id,
+                vendor_id=vendor_id,
+                price=price,
+                sale_price=sale_price,
+                regular_price=regular_price,
+                add_stock=add_stock,
+                restock_quantity=restock_quantity,
+                shipping_fee=shipping_fee,
+                global_delivery=global_delivery,
+                tags=tags,
+                images=images,
+                shipping_method=shipping_method,
+                is_fragile=is_fragile,
+                is_biodegradable=is_biodegradable,
+                is_frozen=is_frozen,
+                max_temperature=max_temperature,
+                expiry_date=expiry_date,
+                product_id_type=product_id_type,
+                product_id=product_id,
+                sku=sku,
+                color=color,
+                size=size,
+            )
+            return redirect('all_product')
         else:
-            print(form.errors)  
-    else:
-        form = ProductForm()
-        print(request.POST)
-        print(request.method)
+            message = "please product  field  add "
+             
+  
+    context = {
+        "product":product,
+        "message":message
+    }
         
-    return render(request, 'management/add_product.html', {'form': form})
-
-
-from django.shortcuts import render
-from .models import Product  # Import your Product model
+    return render(request, 'management/add_product.html',context )
 
 def all_product(request):
-    # Fetch filters from request
-    category = request.GET.get('category')
-    vendor = request.GET.get('vendor')
-    title = request.GET.get('title')
-    collection = request.GET.get('collection')
-
-    # Query the Product model
     products = Product.objects.all()
 
-    # Apply filters dynamically
-    if category:
-        products = products.filter(category__icontains=category)
-    if vendor:
-        products = products.filter(vendor__icontains=vendor)
-    if title:
-        products = products.filter(title__icontains=title)
-    if collection:
-        products = products.filter(collection__icontains=collection)
+    # Get search query
+    search = request.GET.get('search')
+    if search:
+        # Filter products where title or description contains the search term
+        products = products.filter(Q(title__icontains=search) | Q(description__icontains=search))
 
-    return render(request, 'management/all_product.html', {'products': products})
+
+    category_name = request.GET.get('category')
+    if category_name:
+        try:
+            category = Category.objects.get(name=category_name)  # Adjust if using slug or other identifier
+            products = products.filter(category=category)
+        except Category.DoesNotExist:
+            products = products.none()  # In case no category matches
+
+    vendor = request.GET.get('vendor')
+    if vendor:
+        
+        try:
+            vendor_id = int(vendor)  # Ensure vendor is an integer
+            products = products.filter(vendor=vendor_id)
+        except (ValueError, TypeError):
+            # Skip filtering if vendor is not a valid integer
+            products = products.none()
+
+    collection = request.GET.get('collection')
+    if collection:
+            try:
+                # Attempt to filter by collection name
+                products = products.filter(collections__name=collection)
+                print(f"Successfully filtered by collection: {collection}")  # Debug
+            except Exception as e:
+                # Log the error for debugging
+                print(f"Error occurred while filtering by collection: {str(e)}")
+                products = products.none()  #
+    context = {
+        'products': products,
+        'categories': Category.objects.values_list('name', flat=True).distinct(),
+        'vendors': Product.objects.values_list('vendor', flat=True).distinct(),
+        'collections': Collection.objects.values_list('name', flat=True).distinct(),  # Fetch directly from Collection  # Query directly from Collection
+    }
+
+    # Render the template with context
+    return render(request, 'management/all_product.html', context)
+
+
+
+
+
+
 
 
 
