@@ -52,60 +52,34 @@ def add_product(request):
         # Collecting data from the form
         title = request.POST.get('title')
         description = request.POST.get('description')
-        category_id = request.POST.get('category')
-        brand_id = request.POST.get('brand')
-        vendor_id = request.POST.get('vendor')
+        category  = request.POST.get('category')
+        brand = request.POST.get('brand')
         price = request.POST.get('price')
-        sale_price = request.POST.get('sale_price')
-        regular_price = request.POST.get('regular_price')
-        add_stock = request.POST.get('add_stock')
-        restock_quantity = request.POST.get('restock_quantity')
-        shipping_fee = request.POST.get('shipping_fee')
-        global_delivery = request.POST.get('global_delivery') == 'on'  
+        sale_price = request.POST.get('sale_price') 
         tags = request.POST.get('tags')
         images = request.FILES.get('images')
-        shipping_method = request.POST.get('shipping_method')
-        is_fragile = request.POST.get('is_fragile') == 'on'
-        is_biodegradable = request.POST.get('is_biodegradable') == 'on'
-        is_frozen = request.POST.get('is_frozen')
-        max_temperature = request.POST.get('max_temperature')
-        expiry_date = request.POST.get('expiry_date')
-        product_id_type = request.POST.get('product_id_type')
-        product_id = request.POST.get('product_id')
         sku = request.POST.get('sku')
         color = request.POST.get('color')
         size = request.POST.get('size')
+        print(title,description,sale_price,price,tags,color,sku,size,category,brand,images,)
 
-        if title and description and size and color and sku and product_id_type and product_id and sale_price and price and images and expiry_date and tags and is_frozen:
+        if title and description and size and color and sku and price  and sale_price and price and images and tags and brand and category and images:
+            
 
             product = Product.objects.create(
                 title=title,
                 description=description,
-                category_id=category_id,
-                brand_id=brand_id,
-                vendor_id=vendor_id,
-                price=price,
                 sale_price=sale_price,
-                regular_price=regular_price,
-                add_stock=add_stock,
-                restock_quantity=restock_quantity,
-                shipping_fee=shipping_fee,
-                global_delivery=global_delivery,
+                category=category,
+                brand=brand,
+                price=price,
                 tags=tags,
-                images=images,
-                shipping_method=shipping_method,
-                is_fragile=is_fragile,
-                is_biodegradable=is_biodegradable,
-                is_frozen=is_frozen,
-                max_temperature=max_temperature,
-                expiry_date=expiry_date,
-                product_id_type=product_id_type,
-                product_id=product_id,
-                sku=sku,
-                color=color,
                 size=size,
+                color=color,
+                sku=sku,
+                images=images,
             )
-            return redirect('all_product')
+            return redirect('management:all_product')
         else:
             message = "please product  field  add "
              
@@ -164,13 +138,6 @@ def all_product(request):
 
     # Render the template with context
     return render(request, 'management/all_product.html', context)
-
-
-
-
-
-
-
 
 
 @login_required(login_url="/management/login")

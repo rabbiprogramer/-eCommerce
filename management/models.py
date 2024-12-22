@@ -73,7 +73,7 @@ class ProductImage(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', default=1) 
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, blank=True, related_name='products')  
@@ -86,6 +86,7 @@ class Product(models.Model):
     global_delivery = models.BooleanField(default=False)
     selected_countries = models.ManyToManyField('Country', blank=True, related_name='products_in_country') 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    
     tags = models.CharField(max_length=100, unique=True)
     collections = models.ManyToManyField(Collection, related_name='products', blank=True)  
     updated = models.DateTimeField(auto_now=True)
@@ -99,7 +100,6 @@ class Product(models.Model):
     expiry_date =  models.DateTimeField(null=True, blank=True)
     product_id_type = models.CharField(max_length=20, choices=[('ISBN', 'ISBN'), ('UPC', 'UPC'), ('EAN', 'EAN'), ('JAN', 'JAN')], default='ISBN')
     product_id = models.CharField(max_length=255, null=True, blank=True)
-
     sku = models.CharField(max_length=100, unique=True)
     color = models.CharField(max_length=100, null=True, blank=True) 
     size = models.CharField(max_length=50, null=True, blank=True) 

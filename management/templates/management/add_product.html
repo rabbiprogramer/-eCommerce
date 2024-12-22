@@ -16,9 +16,6 @@
                 <span style="color: red;">{{ message }}</span>
             </h3>
         {% endif %}
-        
-
-          
           <div class="ms-auto">
               <div class="btn-group">
                   <button type="button" class="btn btn-primary">Settings</button>
@@ -37,24 +34,25 @@
         <div class="col-12 col-lg-8">
             <div class="card">
                <div class="card-body">
-                
-                  <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <div class="mb-4">                    
-                      <h5 class="mb-3">Product Title</h5>
-                      <input type="text" id="name" name="name" class="form-control" placeholder="write title here....">
-                  </div>
+                  <div class="mb-4">                  
+                    <h5 class="mb-3"><label for="title"> Product Title</label></h5> 
+                    <input type="text" id="title" name="title" class="form-control" placeholder="write title here....">
+                </div>
                   <div class="mb-4">
-                      <h5 class="mb-3">Product Description</h5>
+                    <h5 class="mb-3"><label for="Description">Product Description</label></h5> 
                       <textarea class="form-control" cols="4" rows="6" id="description" name="description" placeholder="write a description here.."></textarea>
                   </div>
                   <div class="mb-4">
-                      <h5 class="mb-3">Display images</h5>
-                      <input  type="file" name="image" id="image"   multiple>
-                  </div>
+                    <h5 class="mb-3">
+                        <label for="images">Display images</label>
+                    </h5>
+                    <input type="file" name="images" id="images" multiple>
+                </div>
+                
                   <div class="mb-4">
                       <h5 class="mb-3">Inventory</h5>
-                      
                       <div class="row g-3">
                       <div class="col-12 col-lg-3">
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
@@ -71,12 +69,13 @@
                           <div class="tab-pane fade" id="Pricing">
                               <div class="row g-3">
                               <div class="col-12 col-lg-6">
-                                  <h6 class="mb-2">Regular price</h6>
-                                  <input class="form-control" id="regular_price" name="regular_price" type="text" placeholder="$$$">
+                                  <h5 class="mb-2"><label for="price">Regular price</label></h5> 
+                                  <input class="form-control" id="price" name="price" type="price" placeholder="$$$">
                               </div>
                               <div class="col-12 col-lg-6">
-                                  <h6 for="sell_price" class="mb-2">Sale price</h6>
-                                  <input class="form-control" id="sell_price" name="sell_price" type="text" placeholder="$$$">
+                                <h5 class="mb-2"><label for="sale_price">sale_price</label></h5> 
+                                  
+                                  <input class="form-control" id="sale_price" name="sale_price" type="sale_price" placeholder="$$$">
                               </div>
                               </div>
                           </div>
@@ -84,7 +83,8 @@
                               <h6 class="mb-3">Add to Stock</h6>
                               <div class="row g-3">
                               <div class="col-sm-7">
-                                  <input class="form-control" id="is_available" name="is_available" type="number" placeholder="Quantity">
+                                <h5 class="mb-2"><label for="is_fragile">is_available</label></h5> 
+                                  <input class="form-control" id="is_fragile" name="is_fragile" type="number" placeholder="Quantity">
                               </div>
                               <div class="col-sm">
                                   <button class="btn btn-outline-primary"><i class="bi bi-check2 me-2"></i>Confirm</button>
@@ -123,6 +123,7 @@
                               <div class="flex-1">
                                   <div class="mb-4">
                                   <div class="form-check mb-1">
+                                    <h5 class="mb-2"><label for="is_fragile">is_available</label></h5> 
                                       <input class="form-check-input" type="radio" name="shippingRadio" id="fullfilledBySeller">
                                       <label class="form-check-label fw-bold" for="fullfilledBySeller">Fullfilled by Seller</label></div>
                                   <div class="ps-4">
@@ -238,18 +239,13 @@
                  <h5 class="mb-3">Organize</h5>
                     <div class="row g-3">
                         <div class="col-12">
-                          <label for="brand_id" class="form-label">Brand</label>
-                          <select class="form-select" name="brand_id" id="brand_id">
-                          {% for brand in brands %}
-                            <option value="{{brand.id}}">{{brand.name}}</option>
-                          {% endfor %}
-                       
-                          </select>
+                          <label for="brand" class="form-label">Brand</label>
+                          <input type="text" class="form-control" name="brand" id="brand" placeholder="brand">
                         </div>
                         <div class="col-12">
-                          <label for="collection" class="form-label">Collection</label>
-                          <input type="text" class="form-control" name="collection" id="collection" placeholder="collection">
-                        </div>
+                          <label for="category" class="form-label">Category</label>
+                          <input type="text" class="form-control" name="category" id="category" placeholder="category">
+                      </div>
                         <div class="col-12">
                           <label for="tags" class="form-label">Tags</label>
                           <input type="text" class="form-control" name="tags" id="tags" placeholder="Tags">
@@ -295,9 +291,7 @@
                   </form>
                 </div>
                </div>
-
             </div>                
-        
        </div><!--end row-->
   </div>
 </main>

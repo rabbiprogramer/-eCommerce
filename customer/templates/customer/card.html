@@ -97,6 +97,48 @@
     </div>
   </div>
 </main>
-
+<!-- Start Cart -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
+  <div class="offcanvas-header border-bottom h-70">
+    <h5 class="mb-0">Shopping Cart</h5>
+    <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
+      <i class="material-icons-outlined">close</i>
+    </a>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="order-list">
+      <!-- Loop Through Products -->
+      {% for product in products %}
+      <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+        <div class="order-img">
+          {% if product.images %}
+          <img src="{{ product.images.url }}" class="img-fluid rounded-3 small-image" alt="{{ product.title }}">
+          {% else %}
+          <img src="{% static 'path/to/default-image.jpg' %}" class="img-fluid rounded-3 small-image" alt="Default Image">
+          {% endif %}
+        </div>
+      </div>
+      
+        <div class="order-info flex-grow-1">
+          <h5 class="mb-1 order-title">{{ product.title }}</h5>
+          <p class="mb-0 order-price">${{ product.price }}</p>
+        </div>
+        <div class="d-flex">
+          <a class="order-delete" href="{% url 'management:product_delete' product.id %}">
+            <span class="material-icons-outlined">delete</span>
+          </a>
+         
+        </div>
+      </div>
+      {% endfor %}
+      
+      <!-- If No Products in Cart -->
+      {% if products|length == 0 %}
+      <p class="text-center p-3">Your cart is empty!</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- End Cart -->
 
 {% endblock %}

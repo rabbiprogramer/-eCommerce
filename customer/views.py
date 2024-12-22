@@ -20,6 +20,13 @@ from management.models import Product
 
 def card (request):
     products = Product.objects.all()
-
     return render(request,'customer/card.html',{'products': products})
+
+def Notification (request):
+    return render(request,'customer/Notification.html')
+
+
+def cart_view(request):
+    products = Product.objects.all()
+    return render(request,'customer/cart_view.html',{'products': products})
 
