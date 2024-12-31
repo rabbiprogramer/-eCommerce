@@ -192,7 +192,10 @@ def process_to_checkout(request):
 
 
 def order(request):
-    return render(request, 'customer/order.html')
+    # Fetch all orders from the database
+    orders = Order.objects.all()
+    # Pass the orders in a dictionary as the context
+    return render(request, 'customer/order.html', {'orders': orders})
 
 def order_confirmation(request, order_id):
     order = get_object_or_404(Order, id=order_id)

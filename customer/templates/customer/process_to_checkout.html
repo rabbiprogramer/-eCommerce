@@ -81,48 +81,77 @@
                <div class="card w-100">
                 <div class="card-body">
                   <h5 class="mb-3 fw-bold">Order<span class="fw-light ms-2">(46)</span></h5>
+                  
 
                   <div class="product-table">
                     <div class="table-responsive white-space-nowrap">
-                       <table class="table align-middle">
-                  <thead class="table-light">
-                    <form method="post" >
-                      {% csrf_token %}
-                      <label for="product_name">Product Name:</label>
-                      <input type="text" id="product_name" name="product_name" required><br>
-                  
-                      <label for="name">Full Name:</label>
-                      <input type="text" id="name" name="name" required><br>
-                  
-                      <label for="phone_number">Phone Number:</label>
-                      <input type="text" id="phone_number" name="phone_number" required><br>
-                  
-                      <label for="email">Email:</label>
-                      <input type="email" id="email" name="email" required><br>
-                  
-                      <label for="building">Building:</label>
-                      <input type="text" id="building" name="building" required><br>
-                  
-                      <label for="locality">Locality:</label>
-                      <input type="text" id="locality" name="locality" required><br>
-                  
-                      <label for="region">Region:</label>
-                      <input type="text" id="region" name="region" required><br>
-                  
-                      <label for="city">City:</label>
-                      <input type="text" id="city" name="city" required><br>
-                  
-                      <label for="age">Age:</label>
-                      <input type="text" id="age" name="age" required><br>
-                  
-                      <label for="total_price">Total Price:</label>
-                      <input type="text" id="total_price" name="total_price" required><br>
-                  
-                      <button type="submit">Submit</button>
-                  </form>
-                  
+                      <table class="table align-middle">
+                      <thead class="table-light">
+                        <form method="post" class="form-style">
+                          
+                          {% csrf_token %}
+                          <div class="col-md-12">
+                          <label for="product_name">Product Name:</label>
+                          <input type="text" id="product_name" name="product_name" required><br>
 
-                   </tbody>
+                          <div class="col-md-12">
+                          <label for="name">Full Name:</label>
+                          <input type="text" id="name" name="name" required><br>
+
+                          <div class="col-md-12">
+                          <label for="phone_number">Phone Number:</label>
+                          <input type="text" id="phone_number" name="phone_number" required><br>
+
+                         <div class="col-md-12">
+                          <label for="email">Email:</label>
+                          <input type="email" id="email" name="email" required><br>
+
+                         <div class="col-md-12">
+                          <label for="building">Building:</label>
+                          <input type="text" id="building" name="building" required><br>
+
+                         <div class="col-md-12">
+                          <label for="locality">Locality:</label>
+                          <input type="text" id="locality" name="locality" required><br>
+
+                          <div class="col-md-12">
+                          <label for="region">Region:</label>
+                          <input type="text" id="region" name="region" required><br>
+
+                          <div class="col-md-12">
+                          <label for="city">City:</label>
+                          <input type="text" id="city" name="city" required><br>
+
+                         <div class="col-md-12">
+                          <label for="age">Age:</label>
+                          <input type="text" id="age" name="age" required><br>
+                          
+                         <div class="col-md-12">
+                          <label for="total_price">Total Price:</label>
+                          <input type="text" id="total_price" name="total_price" required><br>
+                        
+                          <div class="col-md-12">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="agree_terms" required>
+                              <label class="form-check-label" for="agree_terms">Agree to terms and conditions</label>
+                              <div class="invalid-feedback">
+                                You must agree before submitting.
+                              </div>
+                            </div>
+                          </div>
+                        
+                          <div class="col-md-12">
+                            <div class="d-md-flex d-grid align-items-center gap-3">
+                              <button type="submit" class="btn btn-grd-primary px-4">Submit</button>
+                              <button type="reset" class="btn btn-grd-info px-4">Reset</button>
+                            </div>
+                          </div>
+                        </form>
+                        
+                      
+                      
+
+                      </tbody>
                  </table>
                     </div>
                   </div>
