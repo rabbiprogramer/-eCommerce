@@ -1,0 +1,565 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <!--start main wrapper-->
+  <main class="main-wrapper">
+    <div class="main-content">
+      <!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">Components</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Order Details</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">Settings</button>
+							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
+								<a class="dropdown-item" href="javascript:;">Another action</a>
+								<a class="dropdown-item" href="javascript:;">Something else here</a>
+								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end breadcrumb-->
+      
+
+        <div class="card">
+          <div class="card-body">
+              <div class="d-flex flex-lg-row flex-column align-items-start align-items-lg-center justify-content-between gap-3">
+                 <div class="flex-grow-1">
+                   <h4 class="fw-bold">Order #849</h4>
+                   <p class="mb-0">Customer ID : <a href="javascript:;">6589743</a></p>
+                 </div>
+                 <div class="overflow-auto">
+                  <div class="btn-group position-static">
+                    <div class="btn-group position-static">
+                      <button type="button" class="btn btn-outline-primary">
+                        <i class="bi bi-printer-fill me-2"></i>Print
+                      </button>
+                    </div>
+                    <div class="btn-group position-static">
+                      <button type="button" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Refund
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:;">Action</a></li>
+                        <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
+                      </ul>
+                    </div>
+                    <div class="btn-group position-static">
+                      <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        More Actions
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:;">Action</a></li>
+                        <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
+                      </ul>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+          </div>
+        </div>
+
+         <div class="row">
+            <div class="col-12 col-lg-8 d-flex">
+               <div class="card w-100">
+                <div class="card-body">
+                  <h5 class="mb-3 fw-bold">Order<span class="fw-light ms-2">(46)</span></h5>
+
+                  <div class="product-table">
+                    <div class="table-responsive white-space-nowrap">
+                       <table class="table align-middle">
+                  <thead class="table-light">
+                    <form method="post" >
+                      {% csrf_token %}
+                      <label for="product_name">Product Name:</label>
+                      <input type="text" id="product_name" name="product_name" required><br>
+                  
+                      <label for="name">Full Name:</label>
+                      <input type="text" id="name" name="name" required><br>
+                  
+                      <label for="phone_number">Phone Number:</label>
+                      <input type="text" id="phone_number" name="phone_number" required><br>
+                  
+                      <label for="email">Email:</label>
+                      <input type="email" id="email" name="email" required><br>
+                  
+                      <label for="building">Building:</label>
+                      <input type="text" id="building" name="building" required><br>
+                  
+                      <label for="locality">Locality:</label>
+                      <input type="text" id="locality" name="locality" required><br>
+                  
+                      <label for="region">Region:</label>
+                      <input type="text" id="region" name="region" required><br>
+                  
+                      <label for="city">City:</label>
+                      <input type="text" id="city" name="city" required><br>
+                  
+                      <label for="age">Age:</label>
+                      <input type="text" id="age" name="age" required><br>
+                  
+                      <label for="total_price">Total Price:</label>
+                      <input type="text" id="total_price" name="total_price" required><br>
+                  
+                      <button type="submit">Submit</button>
+                  </form>
+                  
+
+                   </tbody>
+                 </table>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                 
+                   
+                  </div>
+                </div>
+               </div>
+            </div>
+            <div class="col-12 col-lg-4 d-flex">
+              <div class="w-100">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title mb-4 fw-bold">Summary</h4>
+                  <div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-semi-bold">Items subtotal :</p>
+                      <p class="fw-semi-bold">$891</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-semi-bold">Discount :</p>
+                      <p class="text-danger fw-semi-bold">-$48</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-semi-bold">Tax :</p>
+                      <p class="fw-semi-bold">$156.70</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-semi-bold">Subtotal :</p>
+                      <p class="fw-semi-bold">$756</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-semi-bold">Shipping Cost :</p>
+                      <p class="fw-semi-bold">$50</p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between border-top pt-4">
+                    <h5 class="mb-0 fw-bold">Total :</h5>
+                    <h5 class="mb-0 fw-bold">$925.44</h5>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title mb-4 fw-bold">Order Status</h4>
+                  <label class="form-label">Payment status</label>
+                  <select class="form-select mb-4">
+                    <option value="cod">Processing</option>
+                    <option value="card">Done</option>
+                    <option value="paypal">Pending</option>
+                  </select>
+                  <label class="form-label">Completed status</label>
+                  <select class="form-select">
+                    <option value="cod">Complete</option>
+                    <option value="card">Done</option>
+                    <option value="paypal">Pending</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+           </div>
+         </div><!--end row-->
+         <div class="card mt-4">
+            <div class="card-body">
+              <div class="product-table">
+                <div class="table-responsive white-space-nowrap">
+                  <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th><input class="form-check-input" type="checkbox"></th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Tags</th>
+                            <th>Rating</th>
+                            <th>Vendor</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td>
+                                <div class="d-flex align-items-center gap-4">
+                                    <div class="product-box">
+                                        {% if product.images %}
+                                        <img src="{{ product.images.url }}" width="50" class="rounded-2" alt="{{ product.title }}">
+                                        {% else %}
+                                        <img src="{% static 'assets/images/default.png' %}" width="70" class="rounded-3" alt="Default Image">
+                                        {% endif %}
+                                    </div>
+                                    <div class="product-info">
+                                      {% for product in products %}
+                                        <a href="#" class="product-title">{{ product.title }}</a>
+                                        {% endfor %}
+                                        <p class="mb-0 product-category">Category: {{ product.category }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            {% for product in products %}
+                            <td>${{ product.price }}</td>
+                            {% endfor %}
+                            <td>{{ product.category }}</td>
+                            <td>{{ product.tags }}</td>
+                            <td>
+                                <div class="product-rating">
+                                    <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
+                                </div>
+                            </td>
+                            <td>{{ product.vendor }}</td>
+                            <td>{{ product.updated|date:"M d, h:i A" }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'management:product_edit' product.id %}">Edit</a></li>
+                                        <form action="{% url 'management:product_delete' product.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                          {% csrf_token %}
+                                          <button type="submit" class="dropdown-item text-danger" style="border: none; background: none;">Delete</button>
+                                      </form>
+                                    </ul>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+
+      <br><br>
+         <h5 class="fw-bold mb-4">Billing Details</h5>
+         <div class="card">
+            <div class="card-body">
+              <div class="row g-3 row-cols-1 row-cols-lg-4">
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-person-circle"></i>
+                    </div>
+                    <div class="detail-info">
+                       <p class="fw-bold mb-1">Customer Name</p>
+                       <a href="javascript:;" class="mb-0">Jhon Maxwell</a>
+                    </div>
+                 </div>
+                </div>
+
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div class="detail-info">
+                      <h6 class="fw-bold mb-1">Email</h6>
+                      <a href="javascript:;" class="mb-0">abcexample.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <div class="detail-info">
+                      <h6 class="fw-bold mb-1">Phone</h6>
+                      <a href="javascript:;" class="mb-0">+01-585XXXXXXX</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+                    <div class="detail-info">
+                      <h6 class="fw-bold mb-1">Shipping Date</h6>
+                      <p class="mb-0">15 Dec, 2022</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-gift-fill"></i>
+                    </div>
+                    <div class="detail-info">
+                      <h6 class="fw-bold mb-1">Gift Order</h6>
+                      <p  class="mb-0">Gift voucher has available</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-house-door-fill"></i>
+                    </div>
+                    <div class="detail-info">
+                      <h6 class="fw-bold mb-1">Address 1</h6>
+                      <p  class="mb-0">123 Street Name, City, Australia</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                    <div class="detail-icon fs-5">
+                      <i class="bi bi-house-fill"></i>
+                    </div>
+                    <div class="detail-info">
+                      <h6 class="fw-bold mb-1">Shipping Address</h6>
+                      <p  class="mb-0">198 Street Name, City, Inited States of America</p>
+                    </div>
+                  </div>
+                </div>
+              </div><!--end row-->
+            </div>
+         </div>
+
+    </div>
+  </main>
+  <!--end main wrapper-->
+
+
+    <!--start overlay-->
+    <div class="overlay btn-toggle"></div>
+    <!--end overlay-->
+
+     <!--start footer-->
+     <footer class="page-footer">
+      <p class="mb-0">Copyright © 2024. All right reserved.</p>
+    </footer>
+    <!--top footer-->
+
+  <!--start cart-->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
+    <div class="offcanvas-header border-bottom h-70">
+      <h5 class="mb-0" id="offcanvasRightLabel">8 New Orders</h5>
+      <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
+        <i class="material-icons-outlined">close</i>
+      </a>
+    </div>
+    <div class="offcanvas-body p-0">
+      <div class="order-list">
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/01.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">White Men Shoes</h5>
+            <p class="mb-0 order-price">$289</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/02.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Red Airpods</h5>
+            <p class="mb-0 order-price">$149</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/03.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Men Polo Tshirt</h5>
+            <p class="mb-0 order-price">$139</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/04.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Blue Jeans Casual</h5>
+            <p class="mb-0 order-price">$485</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/05.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Fancy Shirts</h5>
+            <p class="mb-0 order-price">$758</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/06.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Home Sofa Set </h5>
+            <p class="mb-0 order-price">$546</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/07.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Black iPhone</h5>
+            <p class="mb-0 order-price">$1049</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+
+        <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+          <div class="order-img">
+            <img src="assets/images/orders/08.png" class="img-fluid rounded-3" width="75" alt="">
+          </div>
+          <div class="order-info flex-grow-1">
+            <h5 class="mb-1 order-title">Goldan Watch</h5>
+            <p class="mb-0 order-price">$689</p>
+          </div>
+          <div class="d-flex">
+            <a class="order-delete"><span class="material-icons-outlined">delete</span></a>
+            <a class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer h-70 p-3 border-top">
+      <div class="d-grid">
+        <button type="button" class="btn btn-grd btn-grd-primary" data-bs-dismiss="offcanvas">View Products</button>
+      </div>
+    </div>
+  </div>
+  <!--end cart-->
+
+
+  <!--start switcher-->
+  <button class="btn btn-grd btn-grd-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">
+    <i class="material-icons-outlined">tune</i>Customize
+  </button>
+  
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="staticBackdrop">
+    <div class="offcanvas-header border-bottom h-70">
+      <div class="">
+        <h5 class="mb-0">Theme Customizer</h5>
+        <p class="mb-0">Customize your theme</p>
+      </div>
+      <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
+        <i class="material-icons-outlined">close</i>
+      </a>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        <p>Theme variation</p>
+
+        <div class="row g-3">
+          <div class="col-12 col-xl-6">
+            <input type="radio" class="btn-check" name="theme-options" id="BlueTheme" checked>
+            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BlueTheme">
+              <span class="material-icons-outlined">contactless</span>
+              <span>Blue</span>
+            </label>
+          </div>
+          <div class="col-12 col-xl-6">
+            <input type="radio" class="btn-check" name="theme-options" id="LightTheme">
+            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="LightTheme">
+              <span class="material-icons-outlined">light_mode</span>
+              <span>Light</span>
+            </label>
+          </div>
+          <div class="col-12 col-xl-6">
+            <input type="radio" class="btn-check" name="theme-options" id="DarkTheme">
+            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="DarkTheme">
+              <span class="material-icons-outlined">dark_mode</span>
+              <span>Dark</span>
+            </label>
+          </div>
+          <div class="col-12 col-xl-6">
+            <input type="radio" class="btn-check" name="theme-options" id="SemiDarkTheme">
+            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="SemiDarkTheme">
+              <span class="material-icons-outlined">contrast</span>
+              <span>Semi Dark</span>
+            </label>
+          </div>
+          <div class="col-12 col-xl-6">
+            <input type="radio" class="btn-check" name="theme-options" id="BoderedTheme">
+            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BoderedTheme">
+              <span class="material-icons-outlined">border_style</span>
+              <span>Bordered</span>
+            </label>
+          </div>
+        </div><!--end row-->
+
+      </div>
+    </div>
+  </div>
+
+
+ 
+{% endblock %}

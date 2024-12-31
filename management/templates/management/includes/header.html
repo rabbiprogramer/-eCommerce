@@ -587,3 +587,55 @@
 
   </nav>
 </header>
+<!--start cart-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
+  <div class="offcanvas-header border-bottom h-70">
+    <h5 class="mb-0" id="offcanvasRightLabel">{{ total_products }} New Orders</h5>
+    <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
+      <i class="material-icons-outlined">close</i>
+    </a>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="order-list">
+      {% for product in products %}
+      <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
+        <div class="order-img">
+          <img src="{{ product.images.url }}" class="img-fluid rounded-3" width="75" alt="{{ product.title }}">
+        </div>
+        <div class="order-info flex-grow-1">
+          <h5 class="mb-1 order-title">{{ product.title }}</h5>
+          <p class="mb-0 order-price">{{ product.description }}</p>
+          <p class="mb-0 order-price">${{ product.price }}</p>
+        </div>
+        <div class="d-flex">
+          <a class="order-delete" href="{% url 'management:product_delete' product.id %}">
+            <span class="material-icons-outlined">delete</span>
+          </a>
+          <a class="order-delete" href="{% url 'customer:product_detail' product.id %}">
+            
+            <span class="material-icons-outlined">visibility</span>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+      <br>
+      <body>
+        
+     
+        <div style="display: flex; justify-content: flex-end;">
+          <a href="{% url 'customer:process_to_checkout' %}" style="color: #ffffff; background-color: #ff0015; padding: 10px 20px; font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; text-align: center;">Proceed to Checkout</a>
+      </div>
+      
+    
+      
+
+
+    </body>
+    
+
+    </div><!--end row-->
+  </div>
+</div>
+<!--end cart-->
+
+
