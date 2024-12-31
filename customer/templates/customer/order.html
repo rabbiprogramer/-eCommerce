@@ -126,10 +126,11 @@
                         </td>
                         <td>${{ order.total_price }}</td>
                         <td>
-                          <a class="d-flex align-items-center gap-3" href="javascript:;">
-                            <div class="customer-pic">
-                              <img src="assets/images/avatars/01.png" class="rounded-circle" width="40" height="40" alt="">
-                            </div>
+                            <a class="d-flex align-items-center gap-3" href="javascript:;">
+                                <div class="customer-pic">
+                                    <img src="{{ user.profile.profile_image.url|default:'assets/images/avatars/01.png' }}" 
+                                         class="rounded-circle" width="40" height="40" alt="Profile Image">
+                                </div>
                             <p class="mb-0 customer-name fw-bold">{{ order.name }}</p>
                           </a>
                         </td>

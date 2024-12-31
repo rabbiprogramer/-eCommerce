@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.exceptions import ValidationError
 
 from .models import *
@@ -348,13 +349,10 @@ def login(request):
     return render(request, 'customer/user_management/login.html')
 
 def orders(request):
-
-
     all_orders = Order.objects.all()
 
     context = {
         'all_orders':all_orders
     }
-
     return render(request, 'customer/order_management/orders.html', context)
 

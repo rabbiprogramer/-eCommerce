@@ -73,7 +73,7 @@
               <div class="search-list d-flex flex-column gap-2">
                 <div class="search-list-item d-flex align-items-center gap-3">
                   <div class="memmber-img">
-                    <img src="{% static 'assets/images/avatars/01.png' %}" width="32" height="32" class="rounded-circle" alt="">
+                    <img src="{{ user.profile.profile_image.url|default:'assets/images/avatars/01.png' }}" width="32" height="32" class="rounded-circle" alt="">
                   </div>
                   <div class="">
                     <h5 class="mb-0 search-list-title ">Andrew Stark</h5>
@@ -82,7 +82,7 @@
 
                 <div class="search-list-item d-flex align-items-center gap-3">
                   <div class="memmber-img">
-                    <img src="{% static 'assets/images/avatars/02.png' %}" width="32" height="32" class="rounded-circle" alt="">
+                    <img src="{{ user.profile.profile_image.url|default:'assets/images/avatars/01.png' }}" width="32" height="32" class="rounded-circle" alt="">
                   </div>
                   <div class="">
                     <h5 class="mb-0 search-list-title ">Snetro Jhonia</h5>
@@ -91,7 +91,7 @@
 
                 <div class="search-list-item d-flex align-items-center gap-3">
                   <div class="memmber-img">
-                    <img src="{% static 'assets/images/avatars/03.png' %}" width="32" height="32" class="rounded-circle" alt="">
+                    <img src="{{ user.profile.profile_image.url|default:'assets/images/avatars/01.png' }}" width="32" height="32" class="rounded-circle" alt="">
                   </div>
                   <div class="">
                     <h5 class="mb-0 search-list-title">Michle Clark</h5>
@@ -557,14 +557,15 @@
       </li>
       <li class="nav-item dropdown">
         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
-           <img src="{% static 'assets/images/avatars/01.png' %}" class="rounded-circle p-1 border" width="45" height="45" alt="">
+           <img src="{{ user.profile.profile_image.url|default:'assets/images/avatars/01.png' }}" class="rounded-circle p-1 border" width="45" height="45" alt="">
         </a>
         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow">
           <a class="dropdown-item  gap-2 py-2" href="javascript:;">
             <div class="text-center">
-              <img src="{% static 'assets/images/avatars/01.png' %}" class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+              
+              <img src="{{ user.profile.profile_image.url|default:'assets/images/avatars/01.png' }}" class="rounded-circle p-1 shadow mb-3" width="90" height="90"
                 alt="">
-              <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
+                <h2><p class="mb-0 customer-name fw-bold">{{ user.profile.first_name }} {{ user.profile.last_name }}</p></h2>
             </div>
           </a>
           <hr class="dropdown-divider">
