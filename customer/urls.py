@@ -8,8 +8,9 @@ urlpatterns = [
     path('Notification',Notification, name='Notification'),
     path('customer_home',customer_home, name='customer_home'),
     path('process_to_checkout',process_to_checkout, name='process_to_checkout'),
-    path('product/<int:product_id>/detail/', product_detail, name='product_detail'),
+    path('product/<int:id>/',product_detail, name='product_detail'),
+    path('massage',massage, name='massage'),
+]
 
 
    
-]

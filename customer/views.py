@@ -24,18 +24,9 @@ def card (request):
 def Notification (request):
     return render(request,'customer/Notification.html')
 
-
-
-
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'product_detail.html', {'product': product})
-
-
-
-
-
-
 
 def customer_home(reqeust):
 
@@ -97,41 +88,6 @@ def cart_view(request):
 
     return render(request, 'customer/cart_view.html', {'cart_items': cart_items, 'total_price': total_price, 'total_price_of_all_carts': total_price_of_all_carts, 'product': product})
 
-# def send_checkout_notifications(user, final_total_price):
-    
-#     message_for_customer = f"Hello {user.username}, your order total is ${final_total_price}. We will process it shortly."
-#     send_sms(user.profile.phone, message_for_customer)
-#     print(send_sms)
-
-
-#     admin_users = User.objects.filter(is_staff=True)  
-#     message_for_admin = f"New order placed by {user.username}. Order total: ${final_total_price}."
-#     print(message_for_admin)
-    
- 
-#     for admin in admin_users:
-#         send_sms(admin.profile.phone_number, message_for_admin)
-    
-   
-#     Notification.objects.create(
-#         user=user,
-#         message=f"Your order has been placed. Total: ${final_total_price}.",
-#         notification_type="order",
-#         action_url="/order_details", 
-#     )
-    
-
-#     for admin in admin_users:
-#         Notification.objects.create(
-#             user=None,  
-#             message=f"New order placed by {user.username}. Total: ${final_total_price}.",
-#             notification_type="admin",
-#             action_url="/admin/orders",
-#         )
-#         print(f"Created Notification for Admin: {admin.username} - Order Total: ${final_total_price}")
-
-
-
 def process_to_checkout(request):
     # Fetch all available products
     products = Product.objects.all()
@@ -173,7 +129,7 @@ def process_to_checkout(request):
             order.save()
 
             # Redirect to a success page or wherever necessary
-            return redirect('customer:process_to_checkout')
+            return redirect('customer:massage')
 
         except ValidationError as e:
             # Handle validation errors and send error messages to the template
@@ -189,8 +145,12 @@ def process_to_checkout(request):
 
     return render(request, 'customer/process_to_checkout.html', context)
 
-
-
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
+    context = {
+        'product': product,
+    }
+    return render(request, 'customer/product_detail.html', context)
 
 def order(request):
     # Fetch all orders from the database
@@ -348,11 +308,8 @@ def login(request):
 
     return render(request, 'customer/user_management/login.html')
 
-def orders(request):
-    all_orders = Order.objects.all()
-
-    context = {
-        'all_orders':all_orders
-    }
-    return render(request, 'customer/order_management/orders.html', context)
+def massage(request, ):
+    orders = Order.objects.all()
+   
+    return render(request, 'customer/massage.html', {'orders': orders} )
 

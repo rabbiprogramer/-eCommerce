@@ -64,4 +64,3 @@ class Order(models.Model):
     def _str_(self):
         return f"Order for {self.full_name} "
 
-

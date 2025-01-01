@@ -1,0 +1,14 @@
+<h1>Order Success</h1>
+<p>{{ message }}</p>
+
+<h2>Order Details</h2>
+<ul>
+    <li><strong>Order ID:</strong> {{ order.id }}</li>
+    <li><strong>Full Name:</strong> {{ order.full_name }}</li>
+    <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+    <li><strong>Total Price:</strong> ${{ order.total_price }}</li>
+    <li><strong>Shipping Address:</strong> {{ order.building }}, {{ order.locality }}, {{ order.city }}, {{ order.region }}</li>
+</ul>
+
+<!-- Optionally, you can include a button to redirect back to home or products -->
+<a href="{% url 'customer:card' %}">Go to Home</a>
