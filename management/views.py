@@ -185,7 +185,7 @@ def login(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 auth_login(request, user)
-                return redirect('management:home')  
+                return redirect('customer:card')  
             else:
                 message = "Invalid credentials"
         else:
@@ -194,29 +194,38 @@ def login(request):
     return render(request, 'management/login.html', {"message": message})
 
 def signup(request): 
-    massage = None 
+    message = None 
     if request.method == 'POST': 
         username = request.POST.get('username') 
         email = request.POST.get('email') 
         password = request.POST.get('password') 
- 
+
+        # Basic validation
         if username and email and password: 
-            user = User.objects.create_user( 
-                username=username, 
-                email=email,
-                password=password ,
-            ) 
-            user.save() 
-            login(request, user)
-            return redirect('management:home') 
+            # Check if the username or email already exists
+            if User.objects.filter(username=username).exists():
+                message = "Username already taken"
+            elif User.objects.filter(email=email).exists():
+                message = "Email already registered"
+            else:
+                # Create a new user
+                user = User.objects.create_user( 
+                    username=username, 
+                    email=email,
+                    password=password,
+                ) 
+                user.save() 
+                # Log the user in and redirect to the home page
+                login(request, user)
+                return redirect('customer:card') 
         else: 
-            massage = "username and password is requard" 
- 
+            message = "Username, email, and password are required" 
+
     context = { 
-        'massage' : massage 
+        'message': message  # Fixed the typo
     } 
- 
-    return render(request, 'management/signup.html', context) 
+
+    return render(request, 'management/signup.html', context)
 
 def logout(request): 
     singout(request) 
