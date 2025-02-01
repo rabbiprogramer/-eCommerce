@@ -9,7 +9,12 @@ urlpatterns = [
     path('customer_home',customer_home, name='customer_home'),
     path('process_to_checkout',process_to_checkout, name='process_to_checkout'),
     path('product/<int:id>/',product_detail, name='product_detail'),
+    path('order/detail/<int:id>/',order_detail, name='order_detail'),
+    path('order/delete/<int:id>/',delete_order, name='delete_order'),
     path('massage',massage, name='massage'),
+    path('login',login, name='login'),
+    path('sign_in',sign_in, name='sign_in'),
+    
 ]
 
 

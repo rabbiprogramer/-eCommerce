@@ -113,6 +113,8 @@
                         <th>Completed Payment</th>
                         <th>Delivery Type</th>
                         <th>Date</th>
+                        
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -150,7 +152,36 @@
                         </td>
                         <td>{{ order.delivery_type }}</td>
                         <td>{{ order.created_at|date:"M d, H:i A" }}</td>
-                      </tr>
+                        <td>{{ order.views }}</td>
+                        <td>{{ order.delete }}</td>
+                        <td>
+                          <div class="dropdown">
+                              <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret" type="button" data-bs-toggle="dropdown">
+                                  <i class="bi bi-three-dots"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                  <!-- Delete Order -->
+                                  <form action="{% url 'customer:delete_order' order.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                      {% csrf_token %}
+                                      <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                  </form>
+                                  <!-- View Order Details -->
+                                  <li>
+                                      <a class="dropdown-item" href="{% url 'customer:order_detail' order.id %}">Details</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </td>
+                      
+                    </tr>
+
+
+
+
+
+
+
+
                       {% endfor %}
                     </tbody>
                   </table>

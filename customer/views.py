@@ -17,19 +17,23 @@ from .models import *
 from management.models import Product
 
 
+
+@login_required(login_url='/login')
+
 def card (request):
     products = Product.objects.all()
     return render(request,'customer/card.html',{'products': products})
 
+@login_required(login_url='/login')
 def Notification (request):
     return render(request,'customer/Notification.html')
 
+@login_required(login_url='/login')
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'product_detail.html', {'product': product})
-
+@login_required(login_url="/login")
 def customer_home(reqeust):
-
     products = Product.objects.all()
     query = reqeust.GET.get('search', '')
     
@@ -59,14 +63,14 @@ def customer_home(reqeust):
 
 
     return render(reqeust, 'customer/customer_home.html', context)
-
+@login_required(login_url='/login')
 def delete_cart_item(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id)  
     cart_item.delete()  
     return redirect('/') 
 
+@login_required(login_url='/login')
 def add_card(request, product_id):
-
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user, is_active=True)
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
@@ -76,7 +80,7 @@ def add_card(request, product_id):
         cart_item.save()
     
     return redirect('/') 
-
+@login_required(login_url='/login')
 def cart_view(request):
 
     product = Product.objects.all()
@@ -312,4 +316,68 @@ def massage(request, ):
     orders = Order.objects.all()
    
     return render(request, 'customer/massage.html', {'orders': orders} )
+
+
+
+def order_detail(request,id):
+    order = get_object_or_404(Order, id=id)
+    return render(request, 'customer/order_detail.html', {'order': order})
+
+def delete_order(request, id):
+    order = get_object_or_404(Order, id=id)
+    order.delete()
+    return redirect('customer:order') 
+
+def login(request):
+    message = None
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if username and password:
+            user = authenticate(request, username=username, password=password)
+            if user:
+                auth_login(request, user)
+                return redirect('customer:card')  
+            else:
+                message = "Invalid credentials"
+        else:
+            message = "Username and Password are required"
+
+    return render(request, 'customer/login.html', {"message": message})
+
+def sign_in(request): 
+    message = None 
+    if request.method == 'POST': 
+        username = request.POST.get('username') 
+        email = request.POST.get('email') 
+        password = request.POST.get('password') 
+
+        # Basic validation
+        if username and email and password: 
+            # Check if the username or email already exists
+            if User.objects.filter(username=username).exists():
+                message = "Username already taken"
+            elif User.objects.filter(email=email).exists():
+                message = "Email already registered"
+            else:
+                # Create a new user
+                user = User.objects.create_user( 
+                    username=username, 
+                    email=email,
+                    password=password,
+                ) 
+                user.save() 
+                # Log the user in and redirect to the home page
+                login(request, user)
+                return redirect('customer:card') 
+        else: 
+            message = "Username, email, and password are required" 
+
+    context = { 
+        'message': message  # Fixed the typo
+    } 
+
+    return render(request, 'customer/sign_in.html', context)
+
 

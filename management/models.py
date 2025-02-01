@@ -102,7 +102,7 @@ class Product(models.Model):
     product_id = models.CharField(max_length=255, null=True, blank=True)
     sku = models.CharField(max_length=100, unique=True)
     color = models.CharField(max_length=100, null=True, blank=True) 
-    size = models.CharField(max_length=50, null=True, blank=True) 
+    size = models.IntegerField(max_length=50, null=True, blank=True) 
 
     def __str__(self):
         return self.title or self.sku

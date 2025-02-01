@@ -45,15 +45,23 @@ def add_new(request):
     return render(request, 'management/add_new.html', {'form': form})
 
 
+from django.shortcuts import render, redirect
+from .models import Product, Brand  # Brand Model Import করুন
+from django.shortcuts import render, redirect
+from django.db import IntegrityError
+from .models import Product, Brand, Category
+
 def add_product(request):
     message = None
-    product = Product.objects.all()
+    products = Product.objects.all()
+    brands = Brand.objects.all()
+    categories = Category.objects.all()
+    
     if request.method == 'POST':
-        # Collecting data from the form
         title = request.POST.get('title')
         description = request.POST.get('description')
-        category  = request.POST.get('category')
-        brand = request.POST.get('brand')
+        category_id = request.POST.get('category')
+        brand_id = request.POST.get('brand')
         price = request.POST.get('price')
         sale_price = request.POST.get('sale_price') 
         tags = request.POST.get('tags')
@@ -61,35 +69,46 @@ def add_product(request):
         sku = request.POST.get('sku')
         color = request.POST.get('color')
         size = request.POST.get('size')
-        print(title,description,sale_price,price,tags,color,sku,size,category,brand,images,)
 
-        if title and description and size and color and sku and price  and sale_price and price and images and tags and brand and category and images:
+        if (title and description and size and color and sku and price and sale_price and
+            images and tags and brand_id and category_id):
             
-
-            product = Product.objects.create(
-                title=title,
-                description=description,
-                sale_price=sale_price,
-                category=category,
-                brand=brand,
-                price=price,
-                tags=tags,
-                size=size,
-                color=color,
-                sku=sku,
-                images=images,
-            )
-            return redirect('management:all_product')
+            brand = Brand.objects.get(id=brand_id)
+            category = Category.objects.get(id=category_id)
+            
+            # পূর্বে একই tags আছে কিনা পরীক্ষা করা
+            if Product.objects.filter(tags=tags).exists():
+                message = "This tag already exists. Please use a different tag."
+            else:
+                try:
+                    Product.objects.create(
+                        title=title,
+                        description=description,
+                        sale_price=sale_price,
+                        category=category,
+                        brand=brand,
+                        price=price,
+                        tags=tags,
+                        size=size,
+                        color=color,
+                        sku=sku,
+                        images=images,
+                    )
+                    return redirect('management:all_product')
+                except IntegrityError as e:
+                    message = f"An error occurred: {str(e)}"
         else:
-            message = "please product  field  add "
-             
-  
+            message = "Please fill all required fields!"
+
     context = {
-        "product":product,
-        "message":message
+        "products": products,
+        "brands": brands,
+        "categories": categories,
+        "message": message
     }
-        
-    return render(request, 'management/add_product.html',context )
+
+    return render(request, 'management/add_product.html', context)
+
 
 def all_product(request):
     products = Product.objects.all()

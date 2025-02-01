@@ -115,7 +115,8 @@
       <li class="nav-item d-lg-none mobile-search-btn">
         <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">search</i></a>
       </li>
-      <h1> <a href="{% url 'management:login' %}" class="btn btn-rounded">Login</a></h1>
+      <h1> <a href="{% url 'customer:login' %}" class="btn btn-rounded">Login</a></h1>
+      <h1> <a href="{% url 'customer:sign_in' %}" class="btn btn-rounded"> sign in</a></h1>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="{% static 'assets/images/county/02.png' %}" width="22" alt="">
@@ -588,7 +589,7 @@
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
               class="material-icons-outlined">cloud_download</i>Downloads</a>
           <hr class="dropdown-divider">
-          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'management:login'%}"><i
+          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'customer:login'%}"><i
           class="material-icons-outlined">power_settings_new</i>Logout</a>
         </div>
       </li>

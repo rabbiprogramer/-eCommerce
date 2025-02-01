@@ -149,11 +149,14 @@
                                     {% endif %}
                                 </div>
                                 <div class="product-info">
-                                  {% for product in products %}
-                                    <a href="#" class="product-title">{{ product.title }}</a>
-                                    {% endfor %}
-                                    <p class="mb-0 product-category">Category: {{ product.category }}</p>
-                                </div>
+                                  
+                                      <div class="single-product">
+                                          <a href="#" class="product-title">{{ product.title }}</a>
+                                          <p class="mb-0 product-category">Category: {{ product.category }}</p>
+                                      </div>
+                                  
+                              </div>
+                              
                             </div>
                         </td>
                         {% for product in products %}
